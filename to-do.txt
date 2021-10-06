@@ -1,0 +1,56 @@
+header banner
+    coffee shop name upper left
+    cart icon upper right - with number next to it per number of items
+    cart clicked - show full cart
+
+main
+    start with all fields collapsed?
+        display: none on toggled class when building 
+    add plus sign next to price name to add to cart immediately
+    otherwise, clicking anywhere within product div opens up expanded view
+
+expanded view
+    show zoomed in view of picture, desc, etc.
+    "add to cart" button with dropdown for quantity
+    if already in cart, allow to delete or edit quantity
+    add "go to cart" button
+
+
+footer
+    any additional nav? put here
+    maybe put food category nav at bottom?
+    filters to rearrange items?
+        would need to organize array and rebuild
+    show total amount (cart: $4.00) in bottom left
+    checkout button bottom right
+
+cart
+    show list of items and quantities
+    allow to delete items or adjust quantity
+    show tax
+    show subtotal
+    proceed to payment
+
+payment method
+    cash or card choice?
+
+cash   
+    ask for amount tendered
+    provide change
+        stretch - show coins/dollars?
+    
+card
+    ask for card number
+    card expiration
+    CVV
+    validate card number
+        # digits
+        add dashes myself - don't need user to
+        stretch - detect type of card?
+    
+final review of payment
+clear cart and reset app
+
+
+desktop styling
+deploy app

@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color:lightblue;
+    padding: 3vw;
+}
+
+/* header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 10%;
+    background-color: lightcoral;
+}
+
+h1 {
+    margin: 10px;
+} */
+
+/* #shopping-cart {
+    background-color: blue;
+    height: 20px;
+    width: 20px;
+    margin: 10px;
+} */
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.product {
+    display: flex;
+    margin: 3vw;
+}
+
+.product-text {
+    margin-left: 3vw;
+}
+
+.product-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+img {
+    height: 25vw;
+    width: 25vw;
+}
+
+.description {
+    font-size: 3vw;
+}
+
+h3 {
+    font-size: 5vw;
+}
+
+h4 {
+    font-size: 4vw;
+}
+
+/* footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 10%;
+    background-color:lightcoral;
+}
+
+#total {
+    margin: 10px;
+}
+
+#check-out {
+    margin: 10px;
+} */
