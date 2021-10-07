@@ -7,31 +7,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffee Shop</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <!-- <header>
-        <h1>Coffee Shop</h1>
-        <div id="shopping-cart"></div>
-    </header> -->
-    <main>
-        <section id="coffee">
-            <h3>Coffee</h3>
-        </section>
-        <section id="other-drinks">
-            <h3>Other Drinks</h3>
-        </section>
-        <section id="baked-goods">
-            <h3>Baked Goods</h3>
-        </section>
-        <section id="sandwiches">
-            <h3>Sandwiches</h3>
-        </section>
-    </main>
-    <!-- <footer>
-        <h2 id="total">Cart: $0.00</h2>
-        <button id="check-out">Check Out</button>
-    </footer> -->
+    <div id="wrapper">
+        <header>
+            <div id="header-text">
+                <h1>Java Script</h1>
+                <p>"Just what the doctor ordered!"</p>
+            </div>
+            <img src="images/coffee-icon.png" alt="cart" id="logo">
+        </header>
+        <main>
+            <section id="coffee">
+                <h3>Coffee</h3>
+            </section>
+            <section id="other-drinks">
+                <h3>Other Drinks</h3>
+            </section>
+            <section id="baked-goods">
+                <h3>Baked Goods</h3>
+            </section>
+            <section id="sandwiches">
+                <h3>Sandwiches</h3>
+            </section>
+        </main>
+        <footer>
+            <div id="cart-info">
+                <img src="images/cart-icon.png" alt="cart" id="cart">
+                <p id="total">$0.00</p>
+                <p id="num-items">0</p>
+            </div>
+            <button id="view-order">View Order</button>
+        </footer>
+    </div>
     <script src="./script.js"></script>
 </body>
 
