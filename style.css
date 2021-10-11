@@ -40,18 +40,53 @@ header {
     font-family: 'Pacifico', cursive;
 }
 
-#logo {
-    height: 20vw;
-    width: 20vw;
+.fa-mug-hot {
+    font-size: 20vw;
+    color: black;
 }
 
-main {
-    display: flex;
+.fa-prescription {
+    font-size: 10vw;
+    padding-top: 3.5vw;
+    padding-right: 4.5vw;
+    color: lightcoral;
+}
+
+#logo-cup {
+    height: 100%;
+    width: 100%;
+}
+
+#logo-rx {
+    height: 10vw;
+    width: 10vw;
+    position: absolute;
+    top: 9vw;
+    right: 9vw;
+    color: white;
+}
+
+.main {
     flex-direction: column;
     align-items: flex-start;
     flex: 1;
     overflow: auto;
     padding: 3vw;
+}
+
+.visible {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}
+
+#cart-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .product {
@@ -61,9 +96,15 @@ main {
 
 .product-text {
     margin-left: 3vw;
+    width: 100%;
 }
 
 .product-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-footer {
     display: flex;
     justify-content: space-between;
 }
@@ -97,27 +138,77 @@ footer {
 
 #cart-info {
     display: flex;
-    align-items: center;    
+    align-items: center;
 }
 
-#total {
+#footer-total {
     padding-left: 2vw;
 }
 
-#cart {
-    height: 10vw;
-    width: 10vw;
+.fa-shopping-cart {
+    font-size: 10vw;
 }
 
-#num-items {
+#footer-item-count {
     position: fixed;
     bottom: 6.5vw;
-    left: 7vw;
+    left: 8vw;
     color: white;
     font-family: 'Pacifico', cursive;   
 }
 
-#view-order {
-    width: 30vw;
+/* #footer-button {
     border-radius: 25vw;
+} */
+
+.row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.7vw solid black;
+}
+
+#checkout {
+    width: 100%;
+}
+
+#checkout-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#cost-info {
+    width: 100%;
+}
+
+#tip-info {
+    width: 100%;
+}
+
+#tip-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.clicked {
+    background-color: blue;
+}
+
+.not-clicked {
+    background-color: red;
+}
+
+#custom-tip {
+    justify-content: space-between;
+}
+
+/* #cash {
+    
+} */
+
+#card {
+    
+    flex-direction: column;
 }

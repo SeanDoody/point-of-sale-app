@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/45fca5c8f9.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -19,9 +20,12 @@
                 <h1>Java Script</h1>
                 <p>"Just what the doctor ordered!"</p>
             </div>
-            <img src="images/coffee-icon.png" alt="cart" id="logo">
+            <span class="fa-stack fa-2x">
+                <i class="fas fa-mug-hot fa-stack-2x"></i>
+                <i class="fas fa-prescription fa-stack-1x fa-inverse"></i>
+            </span>
         </header>
-        <main>
+        <div id="menu" class="main visible">
             <section id="coffee">
                 <h3>Coffee</h3>
             </section>
@@ -34,14 +38,93 @@
             <section id="sandwiches">
                 <h3>Sandwiches</h3>
             </section>
-        </main>
+        </div>
+        <div id="cart" class="main hidden">
+            <div id=cart-header>
+                <h1>Your Cart</h1>
+                <button id="back-to-menu">Back to Menu</button>
+            </div>
+            <div id="cart-items"></div>
+        </div>
+        <div id="checkout" class="main hidden">
+            <div id="checkout-header">
+                <h1>Checkout</h1>
+                <button id="back-to-cart">Back to Cart</button>
+            </div>
+            <div id="cost-info">
+                <div class="row">
+                    <h2>Subtotal</h2>
+                    <h2 id="subtotal"></h2>
+                </div>
+                <div class="row">
+                    <h2>Sales Tax (6%)</h2>
+                    <h2 id="tax"></h2>
+                </div>
+                <div class="row">
+                    <h2>Total + Tax</h2>
+                    <h2 id="total-with-tax"></h2>
+                </div>
+                <div id="tip-info">
+                    <h3>Please select tip amount.</h3>
+                    <div id="tip-buttons">
+                        <button value="0" class="clicked">No Tip</button>
+                        <button value="0.1" class="not-clicked">10%</button>
+                        <button value="0.15" class="not-clicked">15%</button>
+                        <button value="0.2" class="not-clicked">20%</button>
+                        <button value="0.25" class="not-clicked">25%</button>
+                        <button id="tip-other" class="not-clicked">Other</button>
+                    </div>
+                    <div id="custom-tip" class="hidden">
+                        <h3>Enter tip amount.</h3>
+                        <div id="custom-tip-buttons">
+                            <button id="tip-percent" class="clicked">%</button>
+                            <button id="tip-dollar" class="not-clicked">$</button>
+                        </div>
+                        <input type="number" id="tip-entry" value="0">
+                    </div>
+                </div>
+                <div class="row">
+                    <h2>Tip</h2>
+                    <h2 id="tip">$0.00</h2>
+                </div>
+                <div class="row">
+                    <h2>Grand Total</h2>
+                    <h2 id="grand-total"></h2>
+                </div>
+            </div>
+            <h3>How would you like to pay?</h3>
+            <div id="payment-buttons">
+                <button id="cash-button" class="clicked" value="cash">Cash</button>
+                <button id="card-button" class="not-clicked" value="card">Debit/Credit Card</button>
+            </div>
+            <div id="cash" class="visible">
+                <div class="row">
+                    <h2>Cash Tendered</h2>
+                    <input type="text" name="cash-input" id="cash-input">
+                </div>
+            </div>
+            <div id="card" class="hidden">
+                <div class="row">
+                    <h2>Card Number</h2>
+                    <input type="text" id="card-number">
+                </div>
+                <div class="row">
+                    <h2>Expiration Date</h2>
+                    <input type="text" id="exp-date">
+                </div>
+                <div class="row">
+                    <h2>Security Code (CVV)</h2>
+                    <input type="number" id="cvv">
+                </div>
+            </div>
+        </div>
         <footer>
             <div id="cart-info">
-                <img src="images/cart-icon.png" alt="cart" id="cart">
-                <p id="total">$0.00</p>
-                <p id="num-items">0</p>
+                <i class="fas fa-shopping-cart"></i>
+                <p id="footer-item-count">0</p>
+                <p id="footer-total">$0.00*</p>
             </div>
-            <button id="view-order">View Order</button>
+            <button id="footer-button">View Order</button>
         </footer>
     </div>
     <script src="./script.js"></script>
