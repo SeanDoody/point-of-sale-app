@@ -17,6 +17,10 @@ html, body {
     background-color:lightblue;
 }
 
+.blur {
+    filter: blur(1vw);
+}
+
 header {
     display: flex;
     align-items: center;
@@ -204,11 +208,35 @@ footer {
     justify-content: space-between;
 }
 
-/* #cash {
-    
+#cash-prompt {
+    flex-direction: column;
+}
+
+#card-prompt {
+    flex-direction: column;
+}
+/* 
+#confirm-payment {
+
 } */
 
-#card {
-    
+#popup {
+    position: fixed;
+    left: 15vw;
+    top: 20vh;
+    height: 60vh;
+    width: 70vw;
+    background-color: lightcoral;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#popup-text {
+    text-align: center;
+}
+
+#start-over {
+    height: 15vw;
+    width: 40vw;
 }

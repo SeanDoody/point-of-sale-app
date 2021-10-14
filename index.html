@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coffee Shop</title>
+    <title>Java Script: Just what the doctor ordered!</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,13 +97,13 @@
                 <button id="cash-button" class="clicked" value="cash">Cash</button>
                 <button id="card-button" class="not-clicked" value="card">Debit/Credit Card</button>
             </div>
-            <div id="cash" class="visible">
+            <form id="cash-prompt" class="visible">
                 <div class="row">
                     <h2>Cash Tendered</h2>
-                    <input type="text" name="cash-input" id="cash-input">
+                    <input type="number" id="cash-input" min="0" step="0.01">
                 </div>
-            </div>
-            <div id="card" class="hidden">
+            </form>
+            <form id="card-prompt" class="hidden">
                 <div class="row">
                     <h2>Card Number</h2>
                     <input type="text" id="card-number">
@@ -116,7 +116,14 @@
                     <h2>Security Code (CVV)</h2>
                     <input type="number" id="cvv">
                 </div>
+            </form>
+        </div>
+        <div id="confirm-payment" class="main hidden">
+            <div class="row">
+                <h1>Confirm Payment</h1>
+                <button id="back-to-checkout">Go Back</button>
             </div>
+            <div id="order-summary"></div>
         </div>
         <footer>
             <div id="cart-info">
@@ -126,6 +133,12 @@
             </div>
             <button id="footer-button">View Order</button>
         </footer>
+    </div>
+    <div id="popup" class="hidden">
+        <h2>Thank you!</h2>
+        <h3 id="popup-text"></h3>
+        <h3>Please come again!</h3>
+        <button id="start-over">Ok</button>
     </div>
     <script src="./script.js"></script>
 </body>

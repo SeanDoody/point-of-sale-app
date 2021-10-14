@@ -9,6 +9,8 @@ class Product {
     }
 }
 
+const wrapperDiv = document.getElementById('wrapper');
+
 const menuDiv = document.getElementById('menu');
 const coffeeSection = document.getElementById('coffee');
 const otherDrinksSection = document.getElementById('other-drinks');
@@ -35,51 +37,29 @@ const checkoutTip = document.getElementById('tip');
 const paymentButtons = document.getElementById('payment-buttons');
 const cashButton = document.getElementById('cash-button');
 const cardButton = document.getElementById('card-button');
-const cashDiv = document.getElementById('cash');
-const cardDiv = document.getElementById('card');
+
+const cashPrompt = document.getElementById('cash-prompt');
+const cashInput = document.getElementById('cash-input');
+
+const cardPrompt = document.getElementById('card-prompt');
+const cardNumber = document.getElementById('card-number');
+const expDate = document.getElementById('exp-date');
+const cvv = document.getElementById('cvv');
+
+const confirmPayment = document.getElementById('confirm-payment');
+const orderSummary = document.getElementById('order-summary');
+const backToCheckout = document.getElementById('back-to-checkout');
 
 const footerButton = document.getElementById('footer-button');
 const footerItemCount = document.getElementById('footer-item-count');
 const footerTotal = document.getElementById('footer-total');
 
+const popupDiv = document.getElementById('popup');
+const popupText = document.getElementById('popup-text');
+const startOver = document.getElementById('start-over');
+
 const productArr = [];
 const cartArr = [];
-
-function createProducts() {
-    productArr.push(new Product('Hot Coffee', 'Coffee',
-    'Our famous house blend, freshly ground and brewed hot. Cream and sugar complimentary.',
-    2.49, 'images/coffee.jpg'));
-productArr.push(new Product('Iced Coffee', 'Coffee',
-    'Our famous house blend, freshly ground and brewed cold. Cream and sugar complimentary.',
-    2.49, 'images/iced-coffee.jpg'));
-productArr.push(new Product('Black Tea', 'Other Drinks',
-    'Not quite as strong as coffee, but it\'ll get the job done!',
-    2.49, 'images/black-tea.jpg'));
-productArr.push(new Product('Green Tea', 'Other Drinks',
-    'I need to just google this s#$%.',
-    2.49, 'images/green-tea.jpg'));
-productArr.push(new Product('Orange Juice', 'Other Drinks',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    2.49, 'images/orange-juice.jpg'));
-productArr.push(new Product('Bagel', 'Baked Goods',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    2.99, 'images/bagel.jpg'));
-productArr.push(new Product('Donut', 'Baked Goods',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    2.99, 'images/donut.jpg'));
-productArr.push(new Product('Scone', 'Baked Goods',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    2.99, 'images/scone.jpg'));
-productArr.push(new Product('Muffin', 'Baked Goods',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    2.99, 'images/muffin.jpg'));
-productArr.push(new Product('Avocado Toast', 'Sandwiches',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    5.99, 'images/avocado-toast.jpg'));
-productArr.push(new Product('Breakfast Sandwich', 'Sandwiches',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    7.99, 'images/breakfast-sandwich.jpg'));
-}
 
 createProducts();
 buildMenu();
@@ -92,7 +72,48 @@ customTipEntry.addEventListener('change', updateCheckoutTotals);
 paymentButtons.addEventListener('click', toggleClicked);
 cashButton.addEventListener('click', showCash);
 cardButton.addEventListener('click', showCard);
+backToCheckout.addEventListener('click', hideReview);
+// cashInput.addEventListener('input', validateCash);
+// cardNumber.addEventListener('input', validateCardNumber);
+// expDate.addEventListener('input', validateExpDate);
+// cvv.addEventListener('input', validateCvv);
+startOver.addEventListener('click', reloadPage);
 
+function createProducts() {
+    productArr.push(new Product('Hot Coffee', 'Coffee',
+        'Our famous house blend, freshly ground and brewed hot. Cream and sugar complimentary.',
+        2.49, 'images/coffee.jpg'));
+    productArr.push(new Product('Iced Coffee', 'Coffee',
+        'Our famous house blend, freshly ground and brewed cold. Cream and sugar complimentary.',
+        2.49, 'images/iced-coffee.jpg'));
+    productArr.push(new Product('Black Tea', 'Other Drinks',
+        'Not quite as strong as coffee, but it\'ll get the job done!',
+        2.49, 'images/black-tea.jpg'));
+    productArr.push(new Product('Green Tea', 'Other Drinks',
+        'I need to just google this s#$%.',
+        2.49, 'images/green-tea.jpg'));
+    productArr.push(new Product('Orange Juice', 'Other Drinks',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        2.49, 'images/orange-juice.jpg'));
+    productArr.push(new Product('Bagel', 'Baked Goods',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        2.99, 'images/bagel.jpg'));
+    productArr.push(new Product('Donut', 'Baked Goods',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        2.99, 'images/donut.jpg'));
+    productArr.push(new Product('Scone', 'Baked Goods',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        2.99, 'images/scone.jpg'));
+    productArr.push(new Product('Muffin', 'Baked Goods',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        2.99, 'images/muffin.jpg'));
+    productArr.push(new Product('Avocado Toast', 'Sandwiches',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        5.99, 'images/avocado-toast.jpg'));
+    productArr.push(new Product('Breakfast Sandwich', 'Sandwiches',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        7.99, 'images/breakfast-sandwich.jpg'));
+}
 
 function buildMenu() {
 
@@ -320,7 +341,7 @@ function hideCart() {
     while (cartItems.firstChild) {
         cartItems.removeChild(cartItems.firstChild);
     }
-    
+
 }
 
 function toggleClicked(event) {
@@ -360,7 +381,7 @@ function updateCheckoutTotals() {
         tipPercent = parseFloat(tipButton.value);
         tip = parseFloat((total * tipPercent).toFixed(2));
     }
-    
+
     const grandTotal = total + tip;
 
     checkoutSubtotal.innerText = `$${subtotal.toFixed(2)}`;
@@ -373,11 +394,11 @@ function updateCheckoutTotals() {
 }
 
 function showCheckout() {
-    
+
     toggleCartAndCheckout();
-    footerButton.innerText = 'Complete Payment';
+    footerButton.innerText = 'Review Payment';
     footerButton.removeEventListener('click', showCheckout);
-    footerButton.addEventListener('click', completePayment);
+    footerButton.addEventListener('click', showReview);
     updateCheckoutTotals();
 
 }
@@ -386,70 +407,229 @@ function hideCheckout() {
 
     toggleCartAndCheckout();
     footerButton.innerText = 'Checkout';
-    footerButton.removeEventListener('click', completePayment);
+    footerButton.removeEventListener('click', showReview);
     footerButton.addEventListener('click', showCheckout);
     updateFooterTotals();
 
 }
 
 function showCash() {
-    cashDiv.className = 'visible';
-    cardDiv.className = 'hidden';
+    cashPrompt.className = 'visible';
+    cardPrompt.className = 'hidden';
 }
 
 function showCard() {
-    cardDiv.className = 'visible';
-    cashDiv.className = 'hidden';
+    cardPrompt.className = 'visible';
+    cashPrompt.className = 'hidden';
 }
 
-function cashPayment() {
-    // popup - 'please approve the following transaction:
-    // total charge: $__
-    // cash provided: $__
-    // change: $__
-    // if user hits 'approve/agree'
-        // popup
-            // thank you!
-            // please take your change + show amount
-            // please come again!
-            // ok button - location.reload();
-    // if user hits cancel
-        // close popup
-        // return to checkout screen
+// function validateCash(event) {
 
-}
+//     const input = event.target;
+//     const decimalIndex = input.value.indexOf('.');
 
-function cardPayment() {
-    // popup - 'please approve the following transaction:
-    // total charge: $__
-    // card provided: xxxx-xxxx-xxxx-1234
-    // if user hits 'approve/agree'
-        // popup
-            // thank you!
-            // your card x1234 was charged ___
-            // please come again!
-            // ok button - location.reload();
-    // if user hits cancel
-        // close popup
-        // return to checkout screen
+//     if (decimalIndex !== -1) {
+//         if (decimalIndex === input.value.length - 4) {
+//             input.value = input.value.substr(0, input.value.length - 1);
+//         }
+//     }
 
-}
+// }
 
-function completePayment() {
+// function validateCardNumber(event) {
+    
+//     const input = event.target;
+//     const length = input.value.length;
+//     const maxChars = 16;
 
-    const paymentType = paymentButtons.querySelector('.visible').value;
-    let complete = false;
+//     if (length > maxChars) {
+//         input.value = input.value.substr(0, maxChars);
+//     }
+
+//     // const input = event.target;
+//     // const length = input.value.length;
+//     // let inputPosition = input.selectionStart;
+//     // const newChar = input.value[inputPosition - 1];
+
+//     // // console.log(inputPosition);
+//     // // console.log(newChar);
+
+//     // if (isNaN(newChar) || newChar === ' ') {
+//     //     input.value = input.value.substr(0, length - 1);
+//     // } else if (length > 19) {
+//     //     input.value = input.value.substr(0, length - 1);
+//     // }
+//     // else {
+//     //     let newStr = '';
+//     //     let count = 0;
+//     //     for (let i = 0; i < length; i++) {
+//     //         const char = input.value[i];
+//     //         if (char !== ' ') {
+//     //             count++;
+//     //             newStr += char;
+//     //             if (count === 4 || count === 8 || count === 12) {
+//     //                 newStr += ' ';
+//     //                 inputPosition++;
+//     //             }
+//     //         }
+//     //     }
+    
+//     //     input.value = newStr;
+//     //     input.setSelectionRange(inputPosition, inputPosition);
+//     // }
+
+// }
+
+// function validateExpDate(event) {
+
+//     const input = event.target;
+//     const length = input.value.length;
+//     const maxChars = 4;
+
+//     if (length > maxChars) {
+//         input.value = input.value.substr(0, maxChars);
+//     }
+
+// }
+
+// function validateCvv(event) {
+
+//     const input = event.target;
+//     const length = input.value.length;
+//     const maxChars = 4;
+
+//     if (length > maxChars) {
+//         input.value = input.value.substr(0, maxChars);
+//     }
+
+//     // let inputPosition = input.selectionStart;
+
+//     // if (length > 4) {
+//     //     input.value.splice(inputPosition - 1);
+//     // }
+
+// }
+
+function showReview() {
+
+    const paymentType = paymentButtons.querySelector('.clicked').value;
+
+    checkoutDiv.classList.remove('visible');
+    checkoutDiv.classList.add('hidden');
+    confirmPayment.classList.remove('hidden');
+    confirmPayment.classList.add('visible');
+
+    footerButton.innerText = 'Submit Payment';
+    footerButton.removeEventListener('click', showReview);
+    footerButton.addEventListener('click', submitPayment);
+
+    const row1 = document.createElement('div');
+    row1.className = 'row';
+    orderSummary.appendChild(row1);
+
+    const row1Name = document.createElement('h2');
+    row1Name.innerText = 'Order Total';
+    row1.appendChild(row1Name);
+
+    const total = parseFloat(footerTotal.innerText.substr(1));
+    const row1Value = document.createElement('h2');
+    row1Value.innerText = `$${total.toFixed(2)}`;
+    row1.appendChild(row1Value);
+
+    const row2 = document.createElement('div');
+    row2.className = 'row';
+    orderSummary.appendChild(row2);
+
+    const row2Name = document.createElement('h2');
+    row2.appendChild(row2Name);
+
+    const row2Value = document.createElement('h2');
+    row2.appendChild(row2Value);
+
+    const row3 = document.createElement('div');
+    row3.className = 'row';
+    orderSummary.appendChild(row3);
+
+    const row3Name = document.createElement('h2');
+    row3.appendChild(row3Name);
+
+    const row3Value = document.createElement('h2');
+    row3.appendChild(row3Value);
+
     if (paymentType === 'cash') {
-        complete = cashPayment();
+
+        const cashPaid = parseFloat(cashInput.value);
+        const changeDue = cashPaid - total;
+
+        row2Name.innerText = 'Cash Paid';
+        row2Value.innerText = `$${cashPaid.toFixed(2)}`;
+        row3Name.innerText = 'Change';
+        row3Value.innerText = `$${changeDue.toFixed(2)}`;
+
     } else {    // value === 'card'
-        complete = cardPayment();
+
+        const cardNum = 'x' + cardNumber.value.toString().substr(12);
+        row2Name.innerText = 'Card Ending';
+        row2Value.innerText = cardNum;
+        row3Name.innerText = 'Expiration Date';
+        row3Value.innerText = expDate.value;
+
     }
 
-    // not sure if we need to put this in multiple functions or just one
-    // will have to think about it
-    // and whether payment functions need to return a bool or anything
-    if (complete) {
-        location.reload();
+    // CASH PAYMENT
+    // if user hits 'approve/agree'
+    // popup
+    // thank you!
+    // please take your change + show amount
+    // please come again!
+    // ok button - location.reload();
+    // if user hits cancel
+    // close popup
+    // return to checkout screen
+
+    // CARD PAYMENT
+    // if user hits 'approve/agree'
+    // popup
+    // thank you!
+    // your card x1234 was charged ___
+    // please come again!
+    // ok button - location.reload();
+    // if user hits cancel
+    // close popup
+    // return to checkout screen
+
+}
+
+function hideReview() {
+
+    while (orderSummary.firstChild) {
+        orderSummary.removeChild(orderSummary.firstChild);
     }
 
+    checkoutDiv.classList.remove('hidden');
+    checkoutDiv.classList.add('visible');
+    confirmPayment.classList.remove('visible');
+    confirmPayment.classList.add('hidden');
+
+    footerButton.innerText = 'Review Payment';
+    footerButton.removeEventListener('click', submitPayment);
+    footerButton.addEventListener('click', showReview);
+
+}
+
+function submitPayment() {
+
+    wrapperDiv.className = 'blur';
+    popupDiv.className = 'visible';
+    
+    if (orderSummary.children[2].children[0].innerText === 'Change') {
+        popupText.innerText = 'Don\'t forget to take your change.'
+    } else {
+        popupText.innerText = 'Your card was successfully charged.'
+    }
+
+}
+
+function reloadPage() {
+    location.reload();
 }

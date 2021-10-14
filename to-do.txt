@@ -8,28 +8,22 @@ stretch: expanded view
     if already in cart, allow to delete or edit quantity
     add "go to cart" button
 
-cash 
-    ask for amount tendered
-    provide change
-        stretch: show coins/dollars?
-    
-card
-    ask for card number
-    card expiration
-    CVV (3 on visa, mastercard, discover, 4 on amex)
-    stretch: validate card number
-        # digits
-        add dashes automatically
-        detect type of card
-    
-final review of payment - ok, cancel
-clear cart and restart app for next customer
+validations
+    card
+        card number validation
+            add spaces automatically
+            add warning to tell user not to actually enter number!
+        card expiration validation
+            add slash automatically
+        all    
+            figure out way to prevent pushing out last character if inserting in middle of string?
+            create common char limit function to call within other validation functions   
+        form submission
+            need to block user from proceeding when fields are not filled in correctly 
 
 general styling
     sizing looks weird on iPad - play around with vw
 
 desktop styling
 
-add acknowledgements for icons and pictures
-
-deploy app for resume
+deploy app
