@@ -80,39 +80,41 @@ backToCheckout.addEventListener('click', hideReview);
 startOver.addEventListener('click', reloadPage);
 
 function createProducts() {
-    productArr.push(new Product('Hot Coffee', 'Coffee',
-        'Our famous house blend, freshly ground and brewed hot. Cream and sugar complimentary.',
-        2.49, 'images/coffee.jpg'));
-    productArr.push(new Product('Iced Coffee', 'Coffee',
-        'Our famous house blend, freshly ground and brewed cold. Cream and sugar complimentary.',
-        2.49, 'images/iced-coffee.jpg'));
-    productArr.push(new Product('Black Tea', 'Other Drinks',
-        'Not quite as strong as coffee, but it\'ll get the job done!',
-        2.49, 'images/black-tea.jpg'));
-    productArr.push(new Product('Green Tea', 'Other Drinks',
-        'I need to just google this s#$%.',
-        2.49, 'images/green-tea.jpg'));
-    productArr.push(new Product('Orange Juice', 'Other Drinks',
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        2.49, 'images/orange-juice.jpg'));
-    productArr.push(new Product('Bagel', 'Baked Goods',
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        2.99, 'images/bagel.jpg'));
-    productArr.push(new Product('Donut', 'Baked Goods',
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        2.99, 'images/donut.jpg'));
-    productArr.push(new Product('Scone', 'Baked Goods',
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        2.99, 'images/scone.jpg'));
-    productArr.push(new Product('Muffin', 'Baked Goods',
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        2.99, 'images/muffin.jpg'));
-    productArr.push(new Product('Avocado Toast', 'Sandwiches',
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        5.99, 'images/avocado-toast.jpg'));
-    productArr.push(new Product('Breakfast Sandwich', 'Sandwiches',
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        7.99, 'images/breakfast-sandwich.jpg'));
+
+    productArr.push(new Product("Hot Coffee", "Coffee",
+        "Our famous house blend, freshly ground and brewed hot.",
+        2.49, "images/coffee.jpg"));
+    productArr.push(new Product("Iced Coffee", "Coffee",
+        "Our famous house blend, freshly ground and brewed cold.",
+        2.49, "images/iced-coffee.jpg"));
+    productArr.push(new Product("Black Tea", "Other Drinks",
+        "Enjoy a strong, bold, rich cup of black tea. Brewed hot.",
+        1.99, "images/black-tea.jpg"));
+    productArr.push(new Product("Green Tea", "Other Drinks",
+        "Enjoy a refreshing cup of green tea. Brewed hot.",
+        1.99, "images/green-tea.jpg"));
+    productArr.push(new Product("Orange Juice", "Other Drinks",
+        "Made from fresh Florida-grown oranges!",
+        1.99, "images/orange-juice.jpg"));
+    productArr.push(new Product("Bagel", "Baked Goods",
+        "New York style bagel, topped with butter or cream cheese.",
+        2.99, "images/bagel.jpg"));
+    productArr.push(new Product("Donut", "Baked Goods",
+        "Baked fresh daily, with a rotating selection of styles and flavors!",
+        2.99, "images/donut.jpg"));
+    productArr.push(new Product("Scone", "Baked Goods",
+        "Enjoy a taste of England! Includes butter, jam, or cream.",
+        2.99, "images/scone.jpg"));
+    productArr.push(new Product("Muffin", "Baked Goods",
+        "Baked fresh daily, with a rotating selection of styles and flavors!",
+        2.99, "images/muffin.jpg"));
+    productArr.push(new Product("Avocado Toast", "Sandwiches",
+        "Seasoned avocado mash spread on fresh whole-grain bread.",
+        5.99, "images/avocado-toast.jpg"));
+    productArr.push(new Product("Breakfast Sandwich", "Sandwiches",
+        "Vegan patty on bread, topped with hummus, avocado, and veggies.",
+        7.99, "images/breakfast-sandwich.jpg"));
+
 }
 
 function buildMenu() {
@@ -135,14 +137,15 @@ function buildMenu() {
         productHeader.classList.add('product-header');
         productText.appendChild(productHeader);
 
-        const productName = document.createElement('h4');
+        const productName = document.createElement('h3');
         productName.classList.add('name');
         productName.innerText = product.name;
         productHeader.appendChild(productName);
 
-        const productPrice = document.createElement('h4');
+        const productPrice = document.createElement('data');
         productPrice.classList.add('price');
         productPrice.innerText = `$${product.price.toFixed(2)}`;
+        productPrice.value = product.price;
         productHeader.appendChild(productPrice);
 
         const productDesc = document.createElement('p');
@@ -171,16 +174,16 @@ function buildMenu() {
         productFooter.appendChild(cartButton);
 
         switch (product.category) {
-            case 'Coffee':
+            case "Coffee":
                 coffeeSection.appendChild(productDiv);
                 break;
-            case 'Other Drinks':
+            case "Other Drinks":
                 otherDrinksSection.appendChild(productDiv);
                 break;
-            case 'Baked Goods':
+            case "Baked Goods":
                 bakedGoodsSection.appendChild(productDiv);
                 break;
-            case 'Sandwiches':
+            case "Sandwiches":
                 sandwichesSection.appendChild(productDiv);
                 break;
             default:
@@ -199,7 +202,9 @@ function updateFooterTotals() {
         items += product.quantity;
         cost += product.quantity * product.price;
     }
+    footerItemCount.value = items;
     footerItemCount.innerText = items;
+    footerTotal.value = cost;
     footerTotal.innerText = `$${parseFloat(cost).toFixed(2)}*`
 
 }
@@ -210,7 +215,7 @@ function addToCart(event) {
     const name = productDiv.querySelector('.name').innerText;
     const category = productDiv.parentNode.querySelector('h3').innerText;
     const description = productDiv.querySelector('.description').innerText;
-    const price = parseFloat(productDiv.querySelector('.price').innerText.substr(1));
+    const price = parseFloat(productDiv.querySelector('.price').value);
     const picture = productDiv.querySelector('img').src;
     let quantity = parseInt(productDiv.querySelector('select').value);
 
@@ -234,7 +239,7 @@ function updateQuantity(event) {
     const newQuantity = event.target.value;
     const product = event.target.parentNode.parentNode.parentNode;
     const productName = product.querySelector('.name').innerText;
-    const index = cartArr.findIndex(p => p.name === productName)
+    const index = cartArr.findIndex(p => p.name === productName);
     cartArr[index].quantity = parseInt(newQuantity);
     updateFooterTotals();
 }
@@ -249,28 +254,17 @@ function removeFromCart(event) {
     updateFooterTotals();
 }
 
-function toggleMenuAndCart() {
-
-    menuDiv.classList.toggle('hidden');
-    menuDiv.classList.toggle('visible');
-    cartDiv.classList.toggle('hidden');
-    cartDiv.classList.toggle('visible');
-
-}
-
-function toggleCartAndCheckout() {
-
-    cartDiv.classList.toggle('hidden');
-    cartDiv.classList.toggle('visible');
-    checkoutDiv.classList.toggle('hidden');
-    checkoutDiv.classList.toggle('visible');
+function toggleHidden(element1, element2) {
+    
+    element1.hidden = !element1.hidden;
+    element2.hidden = !element2.hidden;
 
 }
 
 function showCart() {
 
-    toggleMenuAndCart();
-    footerButton.innerText = 'Checkout';
+    toggleHidden(menuDiv, cartDiv);
+    footerButton.innerText = "Checkout";
     footerButton.removeEventListener('click', showCart);
     footerButton.addEventListener('click', showCheckout);
 
@@ -292,16 +286,17 @@ function showCart() {
         productHeader.classList.add('product-header');
         productText.appendChild(productHeader);
 
-        const productName = document.createElement('h4');
+        const productName = document.createElement('h3');
         productName.classList.add('name');
         productName.innerText = product.name;
         productHeader.appendChild(productName);
 
-        const productPrice = document.createElement('h4');
+        const productPrice = document.createElement('data');
         productPrice.classList.add('price');
         productPrice.innerText = `$${product.price.toFixed(2)}`;
+        productPrice.value = product.price;
         productHeader.appendChild(productPrice);
-
+        
         const productDesc = document.createElement('p');
         productDesc.classList.add('description');
         productDesc.innerText = product.description;
@@ -334,8 +329,8 @@ function showCart() {
 
 function hideCart() {
 
-    toggleMenuAndCart();
-    footerButton.innerText = 'View Order';
+    toggleHidden(menuDiv, cartDiv);
+    footerButton.innerText = "View Order";
     footerButton.removeEventListener('click', showCheckout);
     footerButton.addEventListener('click', showCart);
     while (cartItems.firstChild) {
@@ -361,14 +356,14 @@ function toggleClicked(event) {
 function updateCheckoutTotals() {
 
     updateFooterTotals();
-    const subtotal = parseFloat(footerTotal.innerText.substr(1));
+    const subtotal = parseFloat(footerTotal.value);
     const tax = parseFloat((subtotal * 0.06).toFixed(2));
     const total = subtotal + tax;
     const tipButton = tipButtons.querySelector('.clicked');
     let tipPercent = 0.00;
     let tip = 0.00;
-    if (tipButton.id === 'tip-other') {
-        customTipDiv.className = 'visible';
+    if (tipButton.id === "tip-other") {
+        customTipDiv.hidden = false;
         const tipType = customTipButtons.querySelector('.clicked').innerText;
         if (tipType === '%') {
             tipPercent = parseFloat(customTipEntry.value / 100);
@@ -377,7 +372,7 @@ function updateCheckoutTotals() {
             tip = parseFloat(customTipEntry.value);
         }
     } else {
-        customTipDiv.className = 'hidden';
+        customTipDiv.hidden = true;
         tipPercent = parseFloat(tipButton.value);
         tip = parseFloat((total * tipPercent).toFixed(2));
     }
@@ -395,8 +390,8 @@ function updateCheckoutTotals() {
 
 function showCheckout() {
 
-    toggleCartAndCheckout();
-    footerButton.innerText = 'Review Payment';
+    toggleHidden(cartDiv, checkoutDiv);
+    footerButton.innerText = "Review Payment";
     footerButton.removeEventListener('click', showCheckout);
     footerButton.addEventListener('click', showReview);
     updateCheckoutTotals();
@@ -405,8 +400,8 @@ function showCheckout() {
 
 function hideCheckout() {
 
-    toggleCartAndCheckout();
-    footerButton.innerText = 'Checkout';
+    toggleHidden(cartDiv, checkoutDiv);
+    footerButton.innerText = "Checkout";
     footerButton.removeEventListener('click', showReview);
     footerButton.addEventListener('click', showCheckout);
     updateFooterTotals();
@@ -414,13 +409,13 @@ function hideCheckout() {
 }
 
 function showCash() {
-    cashPrompt.className = 'visible';
-    cardPrompt.className = 'hidden';
+    cashPrompt.hidden = false;
+    cardPrompt.hidden = true;
 }
 
 function showCard() {
-    cardPrompt.className = 'visible';
-    cashPrompt.className = 'hidden';
+    cardPrompt.hidden = false;
+    cashPrompt.hidden = true;
 }
 
 // function validateCash(event) {
@@ -454,21 +449,21 @@ function showCard() {
 //     // // console.log(inputPosition);
 //     // // console.log(newChar);
 
-//     // if (isNaN(newChar) || newChar === ' ') {
+//     // if (isNaN(newChar) || newChar === " ") {
 //     //     input.value = input.value.substr(0, length - 1);
 //     // } else if (length > 19) {
 //     //     input.value = input.value.substr(0, length - 1);
 //     // }
 //     // else {
-//     //     let newStr = '';
+//     //     let newStr = "";
 //     //     let count = 0;
 //     //     for (let i = 0; i < length; i++) {
 //     //         const char = input.value[i];
-//     //         if (char !== ' ') {
+//     //         if (char !== " ") {
 //     //             count++;
 //     //             newStr += char;
 //     //             if (count === 4 || count === 8 || count === 12) {
-//     //                 newStr += ' ';
+//     //                 newStr += " ";
 //     //                 inputPosition++;
 //     //             }
 //     //         }
@@ -514,12 +509,9 @@ function showReview() {
 
     const paymentType = paymentButtons.querySelector('.clicked').value;
 
-    checkoutDiv.classList.remove('visible');
-    checkoutDiv.classList.add('hidden');
-    confirmPayment.classList.remove('hidden');
-    confirmPayment.classList.add('visible');
+    toggleHidden(checkoutDiv, confirmPayment);
 
-    footerButton.innerText = 'Submit Payment';
+    footerButton.innerText = "Submit Payment";
     footerButton.removeEventListener('click', showReview);
     footerButton.addEventListener('click', submitPayment);
 
@@ -527,12 +519,12 @@ function showReview() {
     row1.className = 'row';
     orderSummary.appendChild(row1);
 
-    const row1Name = document.createElement('h2');
-    row1Name.innerText = 'Order Total';
+    const row1Name = document.createElement('h3');
+    row1Name.innerText = "Order Total";
     row1.appendChild(row1Name);
 
-    const total = parseFloat(footerTotal.innerText.substr(1));
-    const row1Value = document.createElement('h2');
+    const total = parseFloat(footerTotal.value);
+    const row1Value = document.createElement('h3');
     row1Value.innerText = `$${total.toFixed(2)}`;
     row1.appendChild(row1Value);
 
@@ -540,38 +532,38 @@ function showReview() {
     row2.className = 'row';
     orderSummary.appendChild(row2);
 
-    const row2Name = document.createElement('h2');
+    const row2Name = document.createElement('h3');
     row2.appendChild(row2Name);
 
-    const row2Value = document.createElement('h2');
+    const row2Value = document.createElement('h3');
     row2.appendChild(row2Value);
 
     const row3 = document.createElement('div');
     row3.className = 'row';
     orderSummary.appendChild(row3);
 
-    const row3Name = document.createElement('h2');
+    const row3Name = document.createElement('h3');
     row3.appendChild(row3Name);
 
-    const row3Value = document.createElement('h2');
+    const row3Value = document.createElement('h3');
     row3.appendChild(row3Value);
 
-    if (paymentType === 'cash') {
+    if (paymentType === "cash") {
 
         const cashPaid = parseFloat(cashInput.value);
         const changeDue = cashPaid - total;
 
-        row2Name.innerText = 'Cash Paid';
+        row2Name.innerText = "Cash Paid";
         row2Value.innerText = `$${cashPaid.toFixed(2)}`;
-        row3Name.innerText = 'Change';
+        row3Name.innerText = "Change";
         row3Value.innerText = `$${changeDue.toFixed(2)}`;
 
-    } else {    // value === 'card'
+    } else {
 
-        const cardNum = 'x' + cardNumber.value.toString().substr(12);
-        row2Name.innerText = 'Card Ending';
+        const cardNum = "x" + cardNumber.value.toString().substr(12);
+        row2Name.innerText = "Card Ending";
         row2Value.innerText = cardNum;
-        row3Name.innerText = 'Expiration Date';
+        row3Name.innerText = "Expiration Date";
         row3Value.innerText = expDate.value;
 
     }
@@ -606,12 +598,9 @@ function hideReview() {
         orderSummary.removeChild(orderSummary.firstChild);
     }
 
-    checkoutDiv.classList.remove('hidden');
-    checkoutDiv.classList.add('visible');
-    confirmPayment.classList.remove('visible');
-    confirmPayment.classList.add('hidden');
+    toggleHidden(checkoutDiv, confirmPayment);
 
-    footerButton.innerText = 'Review Payment';
+    footerButton.innerText = "Review Payment";
     footerButton.removeEventListener('click', submitPayment);
     footerButton.addEventListener('click', showReview);
 
@@ -620,12 +609,12 @@ function hideReview() {
 function submitPayment() {
 
     wrapperDiv.className = 'blur';
-    popupDiv.className = 'visible';
+    popupDiv.hidden = false;
     
-    if (orderSummary.children[2].children[0].innerText === 'Change') {
-        popupText.innerText = 'Don\'t forget to take your change.'
+    if (orderSummary.children[2].children[0].innerText === "Change") {
+        popupText.innerText = "Don't forget to take your change."
     } else {
-        popupText.innerText = 'Your card was successfully charged.'
+        popupText.innerText = "Your card was successfully charged."
     }
 
 }

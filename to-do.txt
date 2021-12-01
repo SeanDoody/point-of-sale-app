@@ -1,5 +1,17 @@
-main
-    start with all fields collapsed? for mobile
+HTML best practice improvements
+    maintain header hierarchy (one h1, then h2, etc)
+        in HTML
+        in JS
+    change item objects to forms? (select + button at least)
+        button should be "form submit"
+    change price elements to <data>?
+    add <label>s for payment methods!
+
+styling/CSS best practice improvements
+    add breakpoint for iPad and laptop
+
+disable form input on enter, make sure forms are set correctly
+percent tip amount not working
 
 stretch: expanded view
     show zoomed in view of picture, desc, etc.
@@ -9,21 +21,27 @@ stretch: expanded view
     add "go to cart" button
 
 validations
-    card
-        card number validation
-            add spaces automatically
-            add warning to tell user not to actually enter number!
-        card expiration validation
-            add slash automatically
-        all    
-            figure out way to prevent pushing out last character if inserting in middle of string?
-            create common char limit function to call within other validation functions   
-        form submission
-            need to block user from proceeding when fields are not filled in correctly 
-
-general styling
-    sizing looks weird on iPad - play around with vw
+    payment
+        card
+            card number validation
+                add spaces automatically
+                add warning to tell user not to actually enter number!
+            card expiration validation
+                add slash automatically
+            all    
+                figure out way to prevent pushing out last character if inserting in middle of string?
+                create common char limit function to call within other validation functions   
+            form submission
+                need to block user from proceeding
+                    when card fields are not filled in correctly 
+                    when cash is not sufficient
+    cart
+        when going to empty card, add message like "nothing in cart yet"
+        do not allow user to proceed to checkout when cart is empty
 
 desktop styling
+iPad styling
 
-deploy app
+add logo to popup at end
+
+make github repo public and post link

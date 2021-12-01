@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Java Script: Just what the doctor ordered!</title>
+    <title>Java Script: Coffee ℞</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/45fca5c8f9.js" crossorigin="anonymous"></script>
 </head>
 
@@ -25,71 +26,73 @@
                 <i class="fas fa-prescription fa-stack-1x fa-inverse"></i>
             </span>
         </header>
-        <div id="menu" class="main visible">
+        <main id="menu">
             <section id="coffee">
-                <h3>Coffee</h3>
+                <h2>Coffee</h2>
             </section>
             <section id="other-drinks">
-                <h3>Other Drinks</h3>
+                <h2>Other Drinks</h2>
             </section>
             <section id="baked-goods">
-                <h3>Baked Goods</h3>
+                <h2>Baked Goods</h2>
             </section>
             <section id="sandwiches">
-                <h3>Sandwiches</h3>
+                <h2>Sandwiches</h2>
             </section>
-        </div>
-        <div id="cart" class="main hidden">
+        </main>
+        <main hidden id="cart">
             <div id=cart-header>
-                <h1>Your Cart</h1>
+                <h2>Your Cart</h2>
                 <button id="back-to-menu">Back to Menu</button>
             </div>
             <div id="cart-items"></div>
-        </div>
-        <div id="checkout" class="main hidden">
+        </main>
+        <main hidden id="checkout">
             <div id="checkout-header">
-                <h1>Checkout</h1>
+                <h2>Checkout</h2>
                 <button id="back-to-cart">Back to Cart</button>
             </div>
             <div id="cost-info">
                 <div class="row">
-                    <h2>Subtotal</h2>
-                    <h2 id="subtotal"></h2>
+                    <h3>Subtotal</h3>
+                    <h3 id="subtotal"></h3>
                 </div>
                 <div class="row">
-                    <h2>Sales Tax (6%)</h2>
-                    <h2 id="tax"></h2>
+                    <h3>Sales Tax (6%)</h3>
+                    <h3 id="tax"></h3>
                 </div>
                 <div class="row">
-                    <h2>Total + Tax</h2>
-                    <h2 id="total-with-tax"></h2>
+                    <h3>Total + Tax</h3>
+                    <h3 id="total-with-tax"></h3>
                 </div>
-                <div id="tip-info">
+                <form id="tip-info">
                     <h3>Please select tip amount.</h3>
                     <div id="tip-buttons">
-                        <button value="0" class="clicked">No Tip</button>
-                        <button value="0.1" class="not-clicked">10%</button>
-                        <button value="0.15" class="not-clicked">15%</button>
-                        <button value="0.2" class="not-clicked">20%</button>
-                        <button value="0.25" class="not-clicked">25%</button>
-                        <button id="tip-other" class="not-clicked">Other</button>
+                        <button type="button" value="0" class="clicked">No Tip</button>
+                        <button type="button" value="0.1" class="not-clicked">10%</button>
+                        <button type="button" value="0.15" class="not-clicked">15%</button>
+                        <button type="button" value="0.2" class="not-clicked">20%</button>
+                        <button type="button" value="0.25" class="not-clicked">25%</button>
+                        <button type="button" id="tip-other" class="not-clicked">Other</button>
                     </div>
-                    <div id="custom-tip" class="hidden">
+                    <div hidden id="custom-tip">
                         <h3>Enter tip amount.</h3>
-                        <div id="custom-tip-buttons">
-                            <button id="tip-percent" class="clicked">%</button>
-                            <button id="tip-dollar" class="not-clicked">$</button>
+                        <div id="custom-tip-flex">
+                            <div id="custom-tip-buttons">
+                                <button id="tip-percent" type="button" class="clicked">Percent (%)</button>
+                                <button id="tip-dollar" type="button" class="not-clicked">Dollars ($)</button>
+                            </div>
+                            <input type="number" id="tip-entry" value="0">
                         </div>
-                        <input type="number" id="tip-entry" value="0">
                     </div>
+                </form>
+                <div class="row">
+                    <h3>Tip</h3>
+                    <h3 id="tip">$0.00</h3>
                 </div>
                 <div class="row">
-                    <h2>Tip</h2>
-                    <h2 id="tip">$0.00</h2>
-                </div>
-                <div class="row">
-                    <h2>Grand Total</h2>
-                    <h2 id="grand-total"></h2>
+                    <h3>Grand Total</h3>
+                    <h3 id="grand-total"></h3>
                 </div>
             </div>
             <h3>How would you like to pay?</h3>
@@ -97,44 +100,44 @@
                 <button id="cash-button" class="clicked" value="cash">Cash</button>
                 <button id="card-button" class="not-clicked" value="card">Debit/Credit Card</button>
             </div>
-            <form id="cash-prompt" class="visible">
+            <form id="cash-prompt">
                 <div class="row">
-                    <h2>Cash Tendered</h2>
+                    <h3>Cash Paid</h3>
                     <input type="number" id="cash-input" min="0" step="0.01">
                 </div>
             </form>
-            <form id="card-prompt" class="hidden">
+            <form hidden id="card-prompt">
                 <div class="row">
-                    <h2>Card Number</h2>
+                    <h3>Card Number</h3>
                     <input type="text" id="card-number">
                 </div>
                 <div class="row">
-                    <h2>Expiration Date</h2>
+                    <h3>Expiration Date</h3>
                     <input type="text" id="exp-date">
                 </div>
                 <div class="row">
-                    <h2>Security Code (CVV)</h2>
+                    <h3>Security Code (CVV)</h3>
                     <input type="number" id="cvv">
                 </div>
             </form>
-        </div>
-        <div id="confirm-payment" class="main hidden">
-            <div class="row">
-                <h1>Confirm Payment</h1>
+        </main>
+        <main hidden id="confirm-payment">
+            <div id="confirm-payment-header">
+                <h2>Confirm Payment</h2>
                 <button id="back-to-checkout">Go Back</button>
             </div>
             <div id="order-summary"></div>
-        </div>
+        </main>
         <footer>
             <div id="cart-info">
                 <i class="fas fa-shopping-cart"></i>
-                <p id="footer-item-count">0</p>
-                <p id="footer-total">$0.00*</p>
+                <data id="footer-item-count">0</data>
+                <data id="footer-total">$0.00*</data>
             </div>
             <button id="footer-button">View Order</button>
         </footer>
     </div>
-    <div id="popup" class="hidden">
+    <div hidden id="popup">
         <h2>Thank you!</h2>
         <h3 id="popup-text"></h3>
         <h3>Please come again!</h3>
