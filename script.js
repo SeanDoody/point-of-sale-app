@@ -111,7 +111,7 @@ function createProducts() {
     productArr.push(new Product("Avocado Toast", "Sandwiches",
         "Seasoned avocado mash spread on fresh whole-grain bread.",
         5.99, "images/avocado-toast.jpg"));
-    productArr.push(new Product("Breakfast Sandwich", "Sandwiches",
+    productArr.push(new Product("Sandwich", "Sandwiches",
         "Vegan patty on bread, topped with hummus, avocado, and veggies.",
         7.99, "images/breakfast-sandwich.jpg"));
 
@@ -137,6 +137,10 @@ function buildMenu() {
         productHeader.classList.add('product-header');
         productText.appendChild(productHeader);
 
+        const productFooter = document.createElement('div');
+        productFooter.classList.add('product-footer');
+        productText.appendChild(productFooter);
+
         const productName = document.createElement('h3');
         productName.classList.add('name');
         productName.innerText = product.name;
@@ -146,16 +150,12 @@ function buildMenu() {
         productPrice.classList.add('price');
         productPrice.innerText = `$${product.price.toFixed(2)}`;
         productPrice.value = product.price;
-        productHeader.appendChild(productPrice);
+        productFooter.appendChild(productPrice);
 
         const productDesc = document.createElement('p');
         productDesc.classList.add('description');
         productDesc.innerText = product.description;
         productText.appendChild(productDesc);
-
-        const productFooter = document.createElement('div');
-        productFooter.classList.add('product-footer');
-        productText.appendChild(productFooter);
 
         const qtySelect = document.createElement('select');
         productFooter.appendChild(qtySelect);
@@ -167,11 +167,16 @@ function buildMenu() {
             qtySelect.appendChild(option);
         }
 
-        const cartButton = document.createElement('button');
-        cartButton.innerText = "Add to Cart";
-        cartButton.classList.add('add-to-cart');
+        const cartButton = document.createElement('i');
+        cartButton.className = "fas fa-plus-square";
         cartButton.addEventListener('click', addToCart);
         productFooter.appendChild(cartButton);
+
+        // const cartButton = document.createElement('button');
+        // cartButton.innerText = "Add to Cart";
+        // cartButton.classList.add('add-to-cart');
+        // cartButton.addEventListener('click', addToCart);
+        // productFooter.appendChild(cartButton);
 
         switch (product.category) {
             case "Coffee":
