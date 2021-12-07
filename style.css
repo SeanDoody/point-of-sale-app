@@ -48,6 +48,14 @@ button {
     border: solid 0.1rem #412B15;
 }
 
+.back-button {
+    height: 100%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    /* color: #d2c1b0; */
+    background-color: #ad6d2f;
+}
+
 input {
     border-radius: 0.5rem;
     padding-left: 0.3rem;
@@ -99,6 +107,7 @@ header {
     padding-top: 0.8rem;
     padding-right: 1rem;
     color: #d2c1b0;
+    /* color: red; */
 }
 
 /* footer */
@@ -132,13 +141,14 @@ footer {
     position: fixed;
     bottom: 1rem;
     left: 1.6rem;
-    font-family: 'Pacifico', cursive;  
+    font-family: 'Pacifico', cursive;
+    font-weight: normal;
     color: #d2c1b0;
     font-size: 2rem;
 }
 
 #footer-button {
-    height: 70%;
+    height: 90%;
     font-size: 1.5rem;
     font-weight: bold;
     background-color: #d2c1b0; 
@@ -227,12 +237,11 @@ h2 {
     font-size: 2.5rem;
 }
 
-/* .product-footer button {
-    display: none;
-    margin-left: 0.1rem;
-} */
-
 /* shopping cart */
+
+#cart {
+    width: 100%;
+}
 
 #cart-header {
     width: 100%;
@@ -241,19 +250,17 @@ h2 {
     align-items: center;
 }
 
-#cart-header button {
-    height: 100%;
-    font-size: 1rem;
-    font-weight: bold;
+#cart-items {
+    width: 100%;
 }
 
-.row {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 0.1rem solid;
-    margin-bottom: 0.3rem;
-    padding-bottom: 0.2rem;
+#cart-message {
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+
+.fa-minus-square {
+    font-size: 2.5rem;
 }
 
 /* checkout */
@@ -269,9 +276,17 @@ h2 {
     padding-bottom: 0.5rem;
 }
 
-#back-to-cart {
-    height: 100%;
-    font-size: 1rem;
+.row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.1rem solid;
+    margin-bottom: 0.3rem;
+    padding-bottom: 0.2rem;
+}
+
+#checkout span, label, data {
+    font-size: 1.5rem;
     font-weight: bold;
 }
 
@@ -295,13 +310,14 @@ h2 {
 #tip-buttons {
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: space-between;
     margin-bottom: 0.5rem;
 }
 
 #tip-buttons button {
-    margin-right: 0.5rem;
-    width: 3rem;
+    font-size: 1.5rem;
+    margin: 0.25rem;
 } 
 
 #custom-tip {
@@ -310,6 +326,7 @@ h2 {
 
 #custom-tip-flex {
     display: flex;
+    flex-wrap: wrap;
 }
 
 #custom-tip-buttons {
@@ -317,11 +334,23 @@ h2 {
 }
 
 #custom-tip-buttons button {
-    margin-right: 0.5rem;
+    font-size: 1.5rem;
+    margin: 0.25rem;
+}
+
+#tip-entry {
+    height: 2rem;
+    font-size: 2rem;
+    margin: 0.25rem;
 }
 
 #payment-buttons {
     margin-bottom: 0.5rem;
+}
+
+#payment-buttons button {
+    font-size: 1.5rem;
+    margin: 0.25rem;
 }
 
 #cash-prompt {
@@ -338,6 +367,19 @@ h2 {
     width: 100%;
 }
 
+#card-prompt input {
+    width: 55%;
+    height: 2rem;
+    font-size: 2rem;
+    margin: 0.25rem;
+}
+
+#cc-warning {
+    color: red;
+    font-size: 1.3rem;
+    margin-bottom: 0.25rem;
+}
+
 /* confirm payment */
 
 #confirm-payment-header {
@@ -349,6 +391,11 @@ h2 {
 
 #order-summary {
     width: 100%;
+}
+
+#order-summary span, label, data {
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 /* popup */
@@ -369,7 +416,8 @@ h2 {
     justify-content: space-between;
 }
 
-#popup-text {
+#popup p {
+    font-size: 1.5rem;
     text-align: center;
 }
 

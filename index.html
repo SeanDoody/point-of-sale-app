@@ -43,30 +43,30 @@
         <main hidden id="cart">
             <div id=cart-header>
                 <h2>Your Cart</h2>
-                <button id="back-to-menu">Back to Menu</button>
+                <button id="back-to-menu" class="back-button" type="button">Back to Menu</button>
             </div>
             <div id="cart-items"></div>
         </main>
         <main hidden id="checkout">
             <div id="checkout-header">
                 <h2>Checkout</h2>
-                <button id="back-to-cart">Back to Cart</button>
+                <button id="back-to-cart" class="back-button" type="button">Back to Cart</button>
             </div>
             <div id="cost-info">
                 <div class="row">
-                    <h3>Subtotal</h3>
-                    <h3 id="subtotal"></h3>
+                    <span>Subtotal</span>
+                    <data id="subtotal"></data>
                 </div>
                 <div class="row">
-                    <h3>Sales Tax (6%)</h3>
-                    <h3 id="tax"></h3>
+                    <span>Sales Tax (6%)</span>
+                    <data id="tax"></data>
                 </div>
                 <div class="row">
-                    <h3>Total + Tax</h3>
-                    <h3 id="total-with-tax"></h3>
+                    <span>Total + Tax</span>
+                    <data id="total-with-tax"></data>
                 </div>
                 <form id="tip-info">
-                    <h3>Please select tip amount.</h3>
+                    <span>Please select tip amount.</span>
                     <div id="tip-buttons">
                         <button type="button" value="0" class="clicked">No Tip</button>
                         <button type="button" value="0.1" class="not-clicked">10%</button>
@@ -76,55 +76,56 @@
                         <button type="button" id="tip-other" class="not-clicked">Other</button>
                     </div>
                     <div hidden id="custom-tip">
-                        <h3>Enter tip amount.</h3>
+                        <span>Enter tip amount.</span>
                         <div id="custom-tip-flex">
                             <div id="custom-tip-buttons">
-                                <button id="tip-percent" type="button" class="clicked">Percent (%)</button>
-                                <button id="tip-dollar" type="button" class="not-clicked">Dollars ($)</button>
+                                <button id="tip-percent" class="clicked" type="button" value="%">Percent (%)</button>
+                                <button id="tip-dollar" class="not-clicked" type="button" value="$">Dollars ($)</button>
                             </div>
-                            <input type="number" id="tip-entry" value="0">
+                            <input type="number" id="tip-entry" placeholder="0" onkeypress="return event.keyCode != 13;">
                         </div>
                     </div>
                 </form>
                 <div class="row">
-                    <h3>Tip</h3>
-                    <h3 id="tip">$0.00</h3>
+                    <span>Tip</span>
+                    <data id="tip">$0.00</data>
                 </div>
                 <div class="row">
-                    <h3>Grand Total</h3>
-                    <h3 id="grand-total"></h3>
+                    <span>Grand Total</span>
+                    <data id="grand-total"></data>
                 </div>
             </div>
-            <h3>How would you like to pay?</h3>
+            <span>How would you like to pay?</span>
             <div id="payment-buttons">
-                <button id="cash-button" class="clicked" value="cash">Cash</button>
-                <button id="card-button" class="not-clicked" value="card">Debit/Credit Card</button>
+                <button id="cash-button" class="clicked" value="cash" type="button">Cash</button>
+                <button id="card-button" class="not-clicked" value="card" type="button">Debit/Credit Card</button>
             </div>
             <form id="cash-prompt">
                 <div class="row">
-                    <h3>Cash Paid</h3>
-                    <input type="number" id="cash-input" min="0" step="0.01">
+                    <label for="cash-input">Cash Paid</label>
+                    <input type="number" id="cash-input" min="0" step="0.01" onkeypress="return event.keyCode != 13;">
                 </div>
             </form>
             <form hidden id="card-prompt">
+                <p id="cc-warning">Do not enter a real credit card number!</p>
                 <div class="row">
-                    <h3>Card Number</h3>
-                    <input type="text" id="card-number">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" placeholder="15-16 digits" onkeypress="return event.keyCode != 13;">
                 </div>
                 <div class="row">
-                    <h3>Expiration Date</h3>
-                    <input type="text" id="exp-date">
+                    <label for="exp-date">Exp. Date</label>
+                    <input type="text" id="exp-date" placeholder="mm/yy" onkeypress="return event.keyCode != 13;">
                 </div>
                 <div class="row">
-                    <h3>Security Code (CVV)</h3>
-                    <input type="number" id="cvv">
+                    <label for="cvv">CVV</label>
+                    <input type="number" id="cvv" placeholder="3-4 digits" onkeypress="return event.keyCode != 13;">
                 </div>
             </form>
         </main>
         <main hidden id="confirm-payment">
             <div id="confirm-payment-header">
-                <h2>Confirm Payment</h2>
-                <button id="back-to-checkout">Go Back</button>
+                <h2>Confirm Order</h2>
+                <button id="back-to-checkout" class="back-button" type="button">Go Back</button>
             </div>
             <div id="order-summary"></div>
         </main>
@@ -134,14 +135,14 @@
                 <data id="footer-item-count">0</data>
                 <data id="footer-total">$0.00*</data>
             </div>
-            <button id="footer-button">View Order</button>
+            <button id="footer-button" type="button">View Order</button>
         </footer>
     </div>
     <div hidden id="popup">
         <h2>Thank you!</h2>
-        <h3 id="popup-text"></h3>
-        <h3>Please come again!</h3>
-        <button id="start-over">Ok</button>
+        <p id="popup-text"></p>
+        <p>Please come again!</p>
+        <button id="start-over" type="button">Ok</button>
     </div>
     <script src="./script.js"></script>
 </body>

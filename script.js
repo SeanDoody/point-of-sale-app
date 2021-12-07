@@ -249,6 +249,28 @@ function updateQuantity(event) {
     updateFooterTotals();
 }
 
+function subtractFromCart(event) {
+    const product = event.target.parentNode.parentNode.parentNode;
+    const productName = product.querySelector('.name').innerText;
+    const index = cartArr.findIndex(p => p.name === productName);
+
+    if (cartArr[index].quantity === 1) {
+        cartArr.splice(index, 1);
+        product.remove();
+    } else {
+        cartArr[index].quantity--;
+        const productPrice = product.querySelector('.price');
+        productPrice.innerText = `$${cartArr[index].price.toFixed(2)} x ${cartArr[index].quantity}`;
+    }
+
+    updateFooterTotals();
+    if (cartArr.length === 0) {
+        const emptyCart = document.createElement('p');
+        emptyCart.id = "cart-message";
+        emptyCart.innerText = "Your cart is empty!";
+        cartItems.appendChild(emptyCart);
+    }
+}
 
 function removeFromCart(event) {
     const product = event.target.parentNode.parentNode.parentNode;
@@ -257,10 +279,16 @@ function removeFromCart(event) {
     cartArr.splice(index, 1);
     product.remove();
     updateFooterTotals();
+    if (cartArr.length === 0) {
+        const emptyCart = document.createElement('p');
+        emptyCart.id = "cart-message";
+        emptyCart.innerText = "Your cart is empty!";
+        cartItems.appendChild(emptyCart);
+    }
 }
 
 function toggleHidden(element1, element2) {
-    
+
     element1.hidden = !element1.hidden;
     element2.hidden = !element2.hidden;
 
@@ -273,62 +301,76 @@ function showCart() {
     footerButton.removeEventListener('click', showCart);
     footerButton.addEventListener('click', showCheckout);
 
-    for (let product of cartArr) {
+    if (cartArr.length === 0) {
+        const emptyCart = document.createElement('p');
+        emptyCart.id = "cart-message";
+        emptyCart.innerText = "Your cart is empty!";
+        cartItems.appendChild(emptyCart);
+    } else {
 
-        const productDiv = document.createElement('div');
-        productDiv.classList.add('product');
+        for (let product of cartArr) {
 
-        const productImg = document.createElement('img');
-        productImg.src = product.picture;
-        productImg.alt = product.name;
-        productDiv.appendChild(productImg);
+            const productDiv = document.createElement('div');
+            productDiv.classList.add('product');
 
-        const productText = document.createElement('div');
-        productText.classList.add('product-text');
-        productDiv.appendChild(productText);
+            const productImg = document.createElement('img');
+            productImg.src = product.picture;
+            productImg.alt = product.name;
+            productDiv.appendChild(productImg);
 
-        const productHeader = document.createElement('div');
-        productHeader.classList.add('product-header');
-        productText.appendChild(productHeader);
+            const productText = document.createElement('div');
+            productText.classList.add('product-text');
+            productDiv.appendChild(productText);
 
-        const productName = document.createElement('h3');
-        productName.classList.add('name');
-        productName.innerText = product.name;
-        productHeader.appendChild(productName);
+            const productHeader = document.createElement('div');
+            productHeader.classList.add('product-header');
+            productText.appendChild(productHeader);
 
-        const productPrice = document.createElement('data');
-        productPrice.classList.add('price');
-        productPrice.innerText = `$${product.price.toFixed(2)}`;
-        productPrice.value = product.price;
-        productHeader.appendChild(productPrice);
-        
-        const productDesc = document.createElement('p');
-        productDesc.classList.add('description');
-        productDesc.innerText = product.description;
-        productText.appendChild(productDesc);
+            const productFooter = document.createElement('div');
+            productFooter.classList.add('product-footer');
+            productText.appendChild(productFooter);
 
-        const productFooter = document.createElement('div');
-        productFooter.classList.add('product-footer');
-        productText.appendChild(productFooter);
+            const productName = document.createElement('h3');
+            productName.classList.add('name');
+            productName.innerText = product.name;
+            productHeader.appendChild(productName);
 
-        const qtySelect = document.createElement('select');
-        productFooter.appendChild(qtySelect);
-        for (let i = 1; i <= 99; i++) {
-            const option = document.createElement('option');
-            option.value = i;
-            option.text = i;
-            qtySelect.appendChild(option);
+            const productPrice = document.createElement('data');
+            productPrice.classList.add('price');
+            productPrice.innerText = `$${product.price.toFixed(2)} x ${product.quantity}`;
+            productPrice.value = product.price;
+            productFooter.appendChild(productPrice);
+
+            const productDesc = document.createElement('p');
+            productDesc.classList.add('description');
+            productDesc.innerText = product.description;
+            productText.appendChild(productDesc);
+
+            const qtySelect = document.createElement('select');
+            productFooter.appendChild(qtySelect);
+            for (let i = 1; i <= 99; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.text = i;
+                qtySelect.appendChild(option);
+            }
+            qtySelect.value = product.quantity;
+            qtySelect.addEventListener('change', updateQuantity);
+
+            const minusButton = document.createElement('i');
+            minusButton.className = "fas fa-minus-square";
+            minusButton.addEventListener('click', subtractFromCart);
+            productFooter.appendChild(minusButton);
+
+            // const removeButton = document.createElement('button');
+            // removeButton.innerText = "Remove from Cart";
+            // removeButton.classList.add('remove-from-cart');
+            // removeButton.addEventListener('click', removeFromCart);
+            // productFooter.appendChild(removeButton);
+
+            cartItems.appendChild(productDiv);
         }
-        qtySelect.value = product.quantity;
-        qtySelect.addEventListener('change', updateQuantity);
 
-        const removeButton = document.createElement('button');
-        removeButton.innerText = "Remove from Cart";
-        removeButton.classList.add('remove-from-cart');
-        removeButton.addEventListener('click', removeFromCart);
-        productFooter.appendChild(removeButton);
-
-        cartItems.appendChild(productDiv);
     }
 }
 
@@ -361,20 +403,24 @@ function toggleClicked(event) {
 function updateCheckoutTotals() {
 
     updateFooterTotals();
+
     const subtotal = parseFloat(footerTotal.value);
     const tax = parseFloat((subtotal * 0.06).toFixed(2));
     const total = subtotal + tax;
     const tipButton = tipButtons.querySelector('.clicked');
     let tipPercent = 0.00;
     let tip = 0.00;
+
     if (tipButton.id === "tip-other") {
         customTipDiv.hidden = false;
-        const tipType = customTipButtons.querySelector('.clicked').innerText;
-        if (tipType === '%') {
-            tipPercent = parseFloat(customTipEntry.value / 100);
-            tip = parseFloat((total * tipPercent).toFixed(2));
-        } else {
-            tip = parseFloat(customTipEntry.value);
+        const tipType = customTipButtons.querySelector('.clicked').value;
+        if (customTipEntry.value.length > 0) {
+            if (tipType === '%') {
+                tipPercent = parseFloat(customTipEntry.value / 100);
+                tip = parseFloat((total * tipPercent).toFixed(2));
+            } else {
+                tip = parseFloat(customTipEntry.value);
+            }
         }
     } else {
         customTipDiv.hidden = true;
@@ -395,11 +441,16 @@ function updateCheckoutTotals() {
 
 function showCheckout() {
 
-    toggleHidden(cartDiv, checkoutDiv);
-    footerButton.innerText = "Review Payment";
-    footerButton.removeEventListener('click', showCheckout);
-    footerButton.addEventListener('click', showReview);
-    updateCheckoutTotals();
+    if (cartArr.length === 0) {
+        alert('nothing in cart!');
+        // gray out button or add custom popup notification
+    } else {
+        toggleHidden(cartDiv, checkoutDiv);
+        footerButton.innerText = "Review Payment";
+        footerButton.removeEventListener('click', showCheckout);
+        footerButton.addEventListener('click', showReview);
+        updateCheckoutTotals();
+    }
 
 }
 
@@ -437,7 +488,7 @@ function showCard() {
 // }
 
 // function validateCardNumber(event) {
-    
+
 //     const input = event.target;
 //     const length = input.value.length;
 //     const maxChars = 16;
@@ -473,7 +524,7 @@ function showCard() {
 //     //             }
 //     //         }
 //     //     }
-    
+
 //     //     input.value = newStr;
 //     //     input.setSelectionRange(inputPosition, inputPosition);
 //     // }
@@ -524,12 +575,12 @@ function showReview() {
     row1.className = 'row';
     orderSummary.appendChild(row1);
 
-    const row1Name = document.createElement('h3');
+    const row1Name = document.createElement('span');
     row1Name.innerText = "Order Total";
     row1.appendChild(row1Name);
 
     const total = parseFloat(footerTotal.value);
-    const row1Value = document.createElement('h3');
+    const row1Value = document.createElement('data');
     row1Value.innerText = `$${total.toFixed(2)}`;
     row1.appendChild(row1Value);
 
@@ -537,20 +588,20 @@ function showReview() {
     row2.className = 'row';
     orderSummary.appendChild(row2);
 
-    const row2Name = document.createElement('h3');
+    const row2Name = document.createElement('span');
     row2.appendChild(row2Name);
 
-    const row2Value = document.createElement('h3');
+    const row2Value = document.createElement('data');
     row2.appendChild(row2Value);
 
     const row3 = document.createElement('div');
     row3.className = 'row';
     orderSummary.appendChild(row3);
 
-    const row3Name = document.createElement('h3');
+    const row3Name = document.createElement('span');
     row3.appendChild(row3Name);
 
-    const row3Value = document.createElement('h3');
+    const row3Value = document.createElement('data');
     row3.appendChild(row3Value);
 
     if (paymentType === "cash") {
@@ -615,7 +666,7 @@ function submitPayment() {
 
     wrapperDiv.className = 'blur';
     popupDiv.hidden = false;
-    
+
     if (orderSummary.children[2].children[0].innerText === "Change") {
         popupText.innerText = "Don't forget to take your change."
     } else {

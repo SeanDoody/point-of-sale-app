@@ -1,17 +1,8 @@
-HTML best practice improvements
-    maintain header hierarchy (one h1, then h2, etc)
-        in HTML
-        in JS
-    change item objects to forms? (select + button at least)
-        button should be "form submit"
-    change price elements to <data>?
-    add <label>s for payment methods!
+enhancements
 
-styling/CSS best practice improvements
-    add breakpoint for iPad and laptop
-
-disable form input on enter, make sure forms are set correctly
-percent tip amount not working
+bugs
+    NaN issue for custom tip - cash
+    
 
 stretch: expanded view
     show zoomed in view of picture, desc, etc.
@@ -19,13 +10,26 @@ stretch: expanded view
     "add to cart" button with dropdown for quantity
     if already in cart, allow to delete or edit quantity
     add "go to cart" button
+    see drawing
 
 validations
-    payment
-        card
+    proceeding to next screen
+        cart -> checkout
+            minimum of one item per cart (DONE)
+        checkout -> review
+            cash
+                cash must be greater than or equal to amount due
+            card
+                16 digit card number
+                four digit expiration
+                3 or 4 digit CVV
+        how to notify user
+            add popup? and/or
+            grey out button?
+
+        stretch: for card, notify as entered
             card number validation
                 add spaces automatically
-                add warning to tell user not to actually enter number!
             card expiration validation
                 add slash automatically
             all    
@@ -35,13 +39,13 @@ validations
                 need to block user from proceeding
                     when card fields are not filled in correctly 
                     when cash is not sufficient
-    cart
-        when going to empty card, add message like "nothing in cart yet"
-        do not allow user to proceed to checkout when cart is empty
 
 desktop styling
+    use original mobile design, just bigger
+
 iPad styling
+    use mobile design, but add description preview and quantity dropdown
 
-add logo to popup at end
+add Java Script Rx logo to popup at end
 
-make github repo public and post link
+make github repo public and post link to netlify site
