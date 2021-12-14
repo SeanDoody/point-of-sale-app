@@ -55,29 +55,30 @@ const footerItemCount = document.getElementById('footer-item-count');
 const footerTotal = document.getElementById('footer-total');
 
 const popupDiv = document.getElementById('popup');
+const popupHeader = document.getElementById('popup-header');
 const popupText = document.getElementById('popup-text');
-const startOver = document.getElementById('start-over');
+const popupButton = document.getElementById('popup-button');
 
 const productArr = [];
 const cartArr = [];
 
 createProducts();
 buildMenu();
+
 footerButton.addEventListener('click', showCart);
 backToMenu.addEventListener('click', hideCart);
 backToCart.addEventListener('click', hideCheckout);
 tipButtons.addEventListener('click', toggleClicked);
 customTipButtons.addEventListener('click', toggleClicked);
-customTipEntry.addEventListener('change', updateCheckoutTotals);
 paymentButtons.addEventListener('click', toggleClicked);
+customTipEntry.addEventListener('change', updateCheckoutTotals);
 cashButton.addEventListener('click', showCash);
 cardButton.addEventListener('click', showCard);
 backToCheckout.addEventListener('click', hideReview);
-// cashInput.addEventListener('input', validateCash);
-// cardNumber.addEventListener('input', validateCardNumber);
-// expDate.addEventListener('input', validateExpDate);
-// cvv.addEventListener('input', validateCvv);
-startOver.addEventListener('click', reloadPage);
+cashInput.addEventListener('input', validateCash);
+cardNumber.addEventListener('input', validateCardNumber);
+expDate.addEventListener('input', validateExpDate);
+cvv.addEventListener('input', validateCvv);
 
 function createProducts() {
 
@@ -207,11 +208,13 @@ function updateFooterTotals() {
         items += product.quantity;
         cost += product.quantity * product.price;
     }
+    cost = parseFloat(cost.toFixed(2));
     footerItemCount.value = items;
     footerItemCount.innerText = items;
     footerTotal.value = cost;
-    footerTotal.innerText = `$${parseFloat(cost).toFixed(2)}*`
-
+    footerTotal.innerText = `$${cost.toFixed(2)}*`
+    // console.log('footerTotal');
+    // console.log(cost);
 }
 
 function addToCart(event) {
@@ -241,11 +244,11 @@ function addToCart(event) {
 }
 
 function updateQuantity(event) {
-    const newQuantity = event.target.value;
+    const newQuantity = parseInt(event.target.value);
     const product = event.target.parentNode.parentNode.parentNode;
     const productName = product.querySelector('.name').innerText;
     const index = cartArr.findIndex(p => p.name === productName);
-    cartArr[index].quantity = parseInt(newQuantity);
+    cartArr[index].quantity = newQuantity;
     updateFooterTotals();
 }
 
@@ -264,15 +267,17 @@ function subtractFromCart(event) {
     }
 
     updateFooterTotals();
+
     if (cartArr.length === 0) {
         const emptyCart = document.createElement('p');
         emptyCart.id = "cart-message";
-        emptyCart.innerText = "Your cart is empty!";
+        emptyCart.innerText = "Your cart is empty.";
         cartItems.appendChild(emptyCart);
     }
 }
 
 function removeFromCart(event) {
+
     const product = event.target.parentNode.parentNode.parentNode;
     const productName = product.querySelector('.name').innerText;
     const index = cartArr.findIndex(p => p.name === productName);
@@ -282,9 +287,10 @@ function removeFromCart(event) {
     if (cartArr.length === 0) {
         const emptyCart = document.createElement('p');
         emptyCart.id = "cart-message";
-        emptyCart.innerText = "Your cart is empty!";
+        emptyCart.innerText = "Your cart is empty.";
         cartItems.appendChild(emptyCart);
     }
+
 }
 
 function toggleHidden(element1, element2) {
@@ -304,7 +310,7 @@ function showCart() {
     if (cartArr.length === 0) {
         const emptyCart = document.createElement('p');
         emptyCart.id = "cart-message";
-        emptyCart.innerText = "Your cart is empty!";
+        emptyCart.innerText = "Your cart is empty.";
         cartItems.appendChild(emptyCart);
     } else {
 
@@ -389,14 +395,22 @@ function hideCart() {
 function toggleClicked(event) {
 
     const parent = event.currentTarget;
+    // console.log('parent');
+    // console.log(parent);
+
     const clicked = event.target;
-    for (let i = 0; i < parent.children.length; i++) {
-        parent.children[i].classList.remove('clicked');
-        parent.children[i].classList.add('not-clicked');
+    // console.log('clicked');
+    // console.log(clicked);
+
+    if (parent !== clicked) {
+        for (let i = 0; i < parent.children.length; i++) {
+            parent.children[i].classList.remove('clicked');
+            parent.children[i].classList.add('not-clicked');
+        }
+        clicked.classList.remove('not-clicked');
+        clicked.classList.add('clicked');
+        updateCheckoutTotals();
     }
-    clicked.classList.remove('not-clicked');
-    clicked.classList.add('clicked');
-    updateCheckoutTotals();
 
 }
 
@@ -405,8 +419,17 @@ function updateCheckoutTotals() {
     updateFooterTotals();
 
     const subtotal = parseFloat(footerTotal.value);
+    // console.log('subtotal');
+    // console.log(subtotal);
+
     const tax = parseFloat((subtotal * 0.06).toFixed(2));
-    const total = subtotal + tax;
+    // console.log('tax');
+    // console.log(tax);
+
+    const total = parseFloat((subtotal + tax).toFixed(2));
+    // console.log('total');
+    // console.log(total);
+
     const tipButton = tipButtons.querySelector('.clicked');
     let tipPercent = 0.00;
     let tip = 0.00;
@@ -416,7 +439,7 @@ function updateCheckoutTotals() {
         const tipType = customTipButtons.querySelector('.clicked').value;
         if (customTipEntry.value.length > 0) {
             if (tipType === '%') {
-                tipPercent = parseFloat(customTipEntry.value / 100);
+                tipPercent = parseFloat(customTipEntry.value) / 100;
                 tip = parseFloat((total * tipPercent).toFixed(2));
             } else {
                 tip = parseFloat(customTipEntry.value);
@@ -427,14 +450,31 @@ function updateCheckoutTotals() {
         tipPercent = parseFloat(tipButton.value);
         tip = parseFloat((total * tipPercent).toFixed(2));
     }
+    // console.log('tipPercent');
+    // console.log(tipPercent);
+    // console.log('tip');
+    // console.log(tip);
 
-    const grandTotal = total + tip;
+    const grandTotal = parseFloat((total + tip).toFixed(2));
+    // console.log('grandTotal');
+    // console.log(grandTotal);
 
+    checkoutSubtotal.value = subtotal;
     checkoutSubtotal.innerText = `$${subtotal.toFixed(2)}`;
+
+    checkoutTax.value = tax;
     checkoutTax.innerText = `$${tax.toFixed(2)}`;
+
+    checkoutTotal.value = total;
     checkoutTotal.innerText = `$${total.toFixed(2)}`;
+
+    checkoutTip.value = tip;
     checkoutTip.innerText = `$${tip.toFixed(2)}`;
+
+    checkoutGrandTotal.value = grandTotal;
     checkoutGrandTotal.innerText = `$${grandTotal.toFixed(2)}`;
+
+    footerTotal.value = grandTotal;
     footerTotal.innerText = `$${grandTotal.toFixed(2)}`;
 
 }
@@ -442,13 +482,12 @@ function updateCheckoutTotals() {
 function showCheckout() {
 
     if (cartArr.length === 0) {
-        alert('nothing in cart!');
-        // gray out button or add custom popup notification
+        showPopup("Oops!", [ "Nothing in cart! Add an item to continue to checkout." ], hidePopup);
     } else {
         toggleHidden(cartDiv, checkoutDiv);
         footerButton.innerText = "Review Payment";
         footerButton.removeEventListener('click', showCheckout);
-        footerButton.addEventListener('click', showReview);
+        footerButton.addEventListener('click', validatePayment);
         updateCheckoutTotals();
     }
 
@@ -458,7 +497,7 @@ function hideCheckout() {
 
     toggleHidden(cartDiv, checkoutDiv);
     footerButton.innerText = "Checkout";
-    footerButton.removeEventListener('click', showReview);
+    footerButton.removeEventListener('click', validatePayment);
     footerButton.addEventListener('click', showCheckout);
     updateFooterTotals();
 
@@ -474,92 +513,175 @@ function showCard() {
     cashPrompt.hidden = true;
 }
 
-// function validateCash(event) {
+function validateCash() {
 
-//     const input = event.target;
-//     const decimalIndex = input.value.indexOf('.');
+    let inputValue = cashInput.value;
+    let pass;
+    
+    if (inputValue === '') {
 
-//     if (decimalIndex !== -1) {
-//         if (decimalIndex === input.value.length - 4) {
-//             input.value = input.value.substr(0, input.value.length - 1);
-//         }
-//     }
+        pass = false;
+        cashInput.className = "error";
 
-// }
+    } else {
 
-// function validateCardNumber(event) {
+        inputValue = parseFloat(parseFloat(inputValue).toFixed(2));
+        cashInput.value = inputValue;
+        const grandTotal = parseFloat(checkoutGrandTotal.value);
+    
+        if (inputValue < grandTotal) {
+            pass = false;
+            cashInput.className = "error";
+        } else {
+            pass = true;
+            cashInput.className = "";
+        }
+    
+    }
 
-//     const input = event.target;
-//     const length = input.value.length;
-//     const maxChars = 16;
+    return pass;
 
-//     if (length > maxChars) {
-//         input.value = input.value.substr(0, maxChars);
-//     }
+}
 
-//     // const input = event.target;
-//     // const length = input.value.length;
-//     // let inputPosition = input.selectionStart;
-//     // const newChar = input.value[inputPosition - 1];
+function validateCardNumber() {
 
-//     // // console.log(inputPosition);
-//     // // console.log(newChar);
+    const length = cardNumber.value.length;
+    let pass;
 
-//     // if (isNaN(newChar) || newChar === " ") {
-//     //     input.value = input.value.substr(0, length - 1);
-//     // } else if (length > 19) {
-//     //     input.value = input.value.substr(0, length - 1);
-//     // }
-//     // else {
-//     //     let newStr = "";
-//     //     let count = 0;
-//     //     for (let i = 0; i < length; i++) {
-//     //         const char = input.value[i];
-//     //         if (char !== " ") {
-//     //             count++;
-//     //             newStr += char;
-//     //             if (count === 4 || count === 8 || count === 12) {
-//     //                 newStr += " ";
-//     //                 inputPosition++;
-//     //             }
-//     //         }
-//     //     }
+    if (length === 15 || length === 16) {
+        pass = true;
+        cardNumber.className = "";
+    } else {
+        pass = false;
+        cardNumber.className = "error";
+    }
 
-//     //     input.value = newStr;
-//     //     input.setSelectionRange(inputPosition, inputPosition);
-//     // }
+    return pass;
 
-// }
+}
 
-// function validateExpDate(event) {
+function validateExpDate() {
 
-//     const input = event.target;
-//     const length = input.value.length;
-//     const maxChars = 4;
+    const inputValue = expDate.value;
+    const length = inputValue.length;
+    let pass;
 
-//     if (length > maxChars) {
-//         input.value = input.value.substr(0, maxChars);
-//     }
+    // console.log('length = ' + length);
+    if (length === 5) {
+        // console.log('passed length');
+        const firstTwo = parseInt(inputValue[0] + inputValue[1]);
+        // console.log('first two = ' + firstTwo);
+        if (firstTwo >= 1 && firstTwo <= 12) {
+            // console.log('passed first two');
+            // console.log('third char = ' + inputValue[2]);
+            if (inputValue[2] = '/') {
+                // console.log('passed /');
+                const lastTwo = parseInt(inputValue[3] + inputValue[4]);
+                // console.log('last two = ' + lastTwo);
+                if (lastTwo >= 21 && lastTwo <= 30) {
+                    // console.log('passed last two');
+                    pass = true;
+                    expDate.className = "";
+                }
+            }
+        }
+    } else {
+        pass = false;
+        expDate.className = "error";
+    }
 
-// }
+    return pass;
 
-// function validateCvv(event) {
+}
 
-//     const input = event.target;
-//     const length = input.value.length;
-//     const maxChars = 4;
+function validateCvv() {
 
-//     if (length > maxChars) {
-//         input.value = input.value.substr(0, maxChars);
-//     }
+    const length = cvv.value.length;
+    let pass;
 
-//     // let inputPosition = input.selectionStart;
+    if (length === 3 || length === 4) {
+        pass = true;
+        cvv.className = "";
+    } else {
+        pass = false;
+        cvv.className = "error";
+    }
 
-//     // if (length > 4) {
-//     //     input.value.splice(inputPosition - 1);
-//     // }
+    return pass;
 
-// }
+}
+
+
+function validatePayment() {
+
+    const paymentType = paymentButtons.querySelector('.clicked').value;
+    let pass = true;
+    const messages = [];
+
+    if (paymentType === 'cash') {
+        if (validateCash() === false) {
+            pass = false;
+            messages.push("Cash amount must be greater than or equal to amount due.")
+            // console.log('failed cash');
+        } else {
+            // console.log('passed cash');
+        }
+    } else {
+        messages.push("Please correct the following issues:")
+        if (validateCardNumber() === false) {
+            pass = false;
+            messages.push("Card number: 15-16 digits")
+            // console.log('failed card number');
+        } else {
+            // console.log('passed card number');
+        }
+        if (validateExpDate() === false) {
+            pass = false;
+            messages.push("Exp. date: mm/yy")
+            // console.log('failed exp date');
+        } else {
+            // console.log('passed exp date');
+        }
+        if (validateCvv() === false) {
+            pass = false;
+            messages.push("CVV: 3-4 digits")
+            // console.log('failed cvv');
+        } else {
+            // console.log('passed cvv');
+        }
+    }
+
+    if (pass) {
+        showReview();
+    } else {
+        showPopup('Oops!', messages, hidePopup);
+    }
+
+}
+
+function showPopup(title, messageArr, buttonEvent) {
+
+    wrapperDiv.className = 'blur';
+    popupDiv.hidden = false;
+    popupHeader.innerText = title;
+    popupButton.addEventListener('click', buttonEvent);
+
+    for (let message of messageArr) {
+        let newP = document.createElement('p');
+        newP.innerText = message;
+        popupText.appendChild(newP);
+    }
+
+}
+
+function hidePopup() {
+    while (popupText.firstChild) {
+        popupText.removeChild(popupText.firstChild);
+    }
+    popupDiv.hidden = true;
+    wrapperDiv.className = "";
+    popupButton.removeEventListener('click', hidePopup);
+}
 
 function showReview() {
 
@@ -568,7 +690,7 @@ function showReview() {
     toggleHidden(checkoutDiv, confirmPayment);
 
     footerButton.innerText = "Submit Payment";
-    footerButton.removeEventListener('click', showReview);
+    footerButton.removeEventListener('click', validatePayment);
     footerButton.addEventListener('click', submitPayment);
 
     const row1 = document.createElement('div');
@@ -581,6 +703,7 @@ function showReview() {
 
     const total = parseFloat(footerTotal.value);
     const row1Value = document.createElement('data');
+    row1Value.value = total;
     row1Value.innerText = `$${total.toFixed(2)}`;
     row1.appendChild(row1Value);
 
@@ -610,41 +733,22 @@ function showReview() {
         const changeDue = cashPaid - total;
 
         row2Name.innerText = "Cash Paid";
+        row2Value.value = cashPaid;
         row2Value.innerText = `$${cashPaid.toFixed(2)}`;
         row3Name.innerText = "Change";
+        row3Value.value = changeDue;
         row3Value.innerText = `$${changeDue.toFixed(2)}`;
 
     } else {
 
-        const cardNum = "x" + cardNumber.value.toString().substr(12);
+        let cardNum = cardNumber.value.toString();
+        cardNum = "x" + cardNum.substr(cardNum.length - 4);
         row2Name.innerText = "Card Ending";
         row2Value.innerText = cardNum;
         row3Name.innerText = "Expiration Date";
         row3Value.innerText = expDate.value;
 
     }
-
-    // CASH PAYMENT
-    // if user hits 'approve/agree'
-    // popup
-    // thank you!
-    // please take your change + show amount
-    // please come again!
-    // ok button - location.reload();
-    // if user hits cancel
-    // close popup
-    // return to checkout screen
-
-    // CARD PAYMENT
-    // if user hits 'approve/agree'
-    // popup
-    // thank you!
-    // your card x1234 was charged ___
-    // please come again!
-    // ok button - location.reload();
-    // if user hits cancel
-    // close popup
-    // return to checkout screen
 
 }
 
@@ -658,23 +762,28 @@ function hideReview() {
 
     footerButton.innerText = "Review Payment";
     footerButton.removeEventListener('click', submitPayment);
-    footerButton.addEventListener('click', showReview);
-
-}
-
-function submitPayment() {
-
-    wrapperDiv.className = 'blur';
-    popupDiv.hidden = false;
-
-    if (orderSummary.children[2].children[0].innerText === "Change") {
-        popupText.innerText = "Don't forget to take your change."
-    } else {
-        popupText.innerText = "Your card was successfully charged."
-    }
+    footerButton.addEventListener('click', validatePayment);
 
 }
 
 function reloadPage() {
     location.reload();
+}
+
+function submitPayment() {
+
+    const messages = [];
+    let payMessage = "";
+
+    if (orderSummary.children[2].children[0].innerText === "Change") {
+        payMessage = "Don't forget to take your change."
+    } else {
+        payMessage = "Your card was successfully charged."
+    }
+
+    messages.push(payMessage);
+    messages.push("Please come again!");
+
+    showPopup("Thank You!", messages, reloadPage);
+
 }

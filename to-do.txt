@@ -1,8 +1,8 @@
-enhancements
-
 bugs
-    NaN issue for custom tip - cash
-    
+    position footer total relative to parent? so it doesn't move on "bounce"
+
+validations
+    wash out button color until user can proceed
 
 stretch: expanded view
     show zoomed in view of picture, desc, etc.
@@ -12,40 +12,11 @@ stretch: expanded view
     add "go to cart" button
     see drawing
 
-validations
-    proceeding to next screen
-        cart -> checkout
-            minimum of one item per cart (DONE)
-        checkout -> review
-            cash
-                cash must be greater than or equal to amount due
-            card
-                16 digit card number
-                four digit expiration
-                3 or 4 digit CVV
-        how to notify user
-            add popup? and/or
-            grey out button?
-
-        stretch: for card, notify as entered
-            card number validation
-                add spaces automatically
-            card expiration validation
-                add slash automatically
-            all    
-                figure out way to prevent pushing out last character if inserting in middle of string?
-                create common char limit function to call within other validation functions   
-            form submission
-                need to block user from proceeding
-                    when card fields are not filled in correctly 
-                    when cash is not sufficient
-
 desktop styling
     use original mobile design, just bigger
+    add tagline to header
+    add Java Script Rx logo to popup at end
 
-iPad styling
+tablet styling
     use mobile design, but add description preview and quantity dropdown
-
-add Java Script Rx logo to popup at end
-
-make github repo public and post link to netlify site
+    add tagline to header

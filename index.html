@@ -21,10 +21,8 @@
                 <h1>Java Script</h1>
                 <p>"Just what the doctor ordered!"</p>
             </div>
-            <span class="fa-stack fa-2x">
-                <i class="fas fa-mug-hot fa-stack-2x"></i>
-                <i class="fas fa-prescription fa-stack-1x fa-inverse"></i>
-            </span>
+            <i class="fas fa-mug-hot"></i>
+            <i class="fas fa-prescription"></i>
         </header>
         <main id="menu">
             <section id="coffee">
@@ -110,7 +108,7 @@
                 <p id="cc-warning">Do not enter a real credit card number!</p>
                 <div class="row">
                     <label for="card-number">Card Number</label>
-                    <input type="text" id="card-number" placeholder="15-16 digits" onkeypress="return event.keyCode != 13;">
+                    <input type="number" id="card-number" step="1" min="0" placeholder="15-16 digits" onkeypress="return event.keyCode != 13;">
                 </div>
                 <div class="row">
                     <label for="exp-date">Exp. Date</label>
@@ -118,7 +116,7 @@
                 </div>
                 <div class="row">
                     <label for="cvv">CVV</label>
-                    <input type="number" id="cvv" placeholder="3-4 digits" onkeypress="return event.keyCode != 13;">
+                    <input type="number" id="cvv" step="1" min="0" placeholder="3-4 digits" onkeypress="return event.keyCode != 13;">
                 </div>
             </form>
         </main>
@@ -139,10 +137,9 @@
         </footer>
     </div>
     <div hidden id="popup">
-        <h2>Thank you!</h2>
-        <p id="popup-text"></p>
-        <p>Please come again!</p>
-        <button id="start-over" type="button">Ok</button>
+        <h2 id="popup-header"></h2>
+        <div id="popup-text"></div>
+        <button id="popup-button" type="button">Ok</button>
     </div>
     <script src="./script.js"></script>
 </body>

@@ -103,11 +103,11 @@ header {
 }
 
 .fa-prescription {
+    position: absolute;
+    top: 2.4rem;
+    right: 2.2rem;
     font-size: 2rem;
-    padding-top: 0.8rem;
-    padding-right: 1rem;
     color: #d2c1b0;
-    /* color: red; */
 }
 
 /* footer */
@@ -138,7 +138,7 @@ footer {
 }
 
 #footer-item-count {
-    position: fixed;
+    position: absolute;
     bottom: 1rem;
     left: 1.6rem;
     font-family: 'Pacifico', cursive;
@@ -151,7 +151,7 @@ footer {
     height: 90%;
     font-size: 1.5rem;
     font-weight: bold;
-    background-color: #d2c1b0; 
+    background-color: #d2c1b0;
 }
 
 /* main section */
@@ -285,6 +285,11 @@ h2 {
     padding-bottom: 0.2rem;
 }
 
+.error {
+    border-width: 0.3rem;
+    border-color: red;
+}
+
 #checkout span, label, data {
     font-size: 1.5rem;
     font-weight: bold;
@@ -402,26 +407,33 @@ h2 {
 
 #popup {
     position: fixed;
-    left: 15%;
-    top: 20%;
-    height: 50%;
-    width: 70%;
-    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
     padding: 1rem;
     border-radius: 1rem;
     background-color: #d2c1b0;
     border: solid 0.2rem #654321;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
 }
 
-#popup p {
+#popup-text {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    margin-bottom: 0.5rem;
+}
+
+#popup-text p {
     font-size: 1.5rem;
     text-align: center;
 }
 
-#start-over {
+#popup-button {
     height: 15%;
     width: 50%;
     font-size: 1.5rem;
