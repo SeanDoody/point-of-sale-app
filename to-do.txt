@@ -1,3 +1,6 @@
+add veggie wrap
+change breakfast-sandwich.jpg to sandwich.jpg
+
 bugs
     position footer total relative to parent? so it doesn't move on "bounce"
 
