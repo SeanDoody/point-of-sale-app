@@ -482,7 +482,7 @@ function updateCheckoutTotals() {
 function showCheckout() {
 
     if (cartArr.length === 0) {
-        showPopup("Oops!", [ "Nothing in cart! Add an item to continue to checkout." ], hidePopup);
+        showPopup("Error!", [ "Nothing in cart! Add an item to continue to checkout." ], hidePopup);
     } else {
         toggleHidden(cartDiv, checkoutDiv);
         footerButton.innerText = "Review Payment";
@@ -654,7 +654,7 @@ function validatePayment() {
     if (pass) {
         showReview();
     } else {
-        showPopup('Oops!', messages, hidePopup);
+        showPopup('Error!', messages, hidePopup);
     }
 
 }

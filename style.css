@@ -57,6 +57,7 @@ button {
 }
 
 input {
+    font-size: 1.8rem;
     border-radius: 0.5rem;
     padding-left: 0.3rem;
     padding-right: 0.3rem;
@@ -88,6 +89,7 @@ header {
     font-family: 'Pacifico', cursive;
     color: #d2c1b0; 
     font-size: 2.5rem;
+    font-weight: normal;
     text-shadow: -0.2rem 0 #654321, 0 0.2rem #654321, 0.2rem 0 #654321, 0 0.2rem #654321;
 }
 
@@ -139,7 +141,7 @@ footer {
 
 #footer-item-count {
     position: absolute;
-    bottom: 1rem;
+    bottom: 0.9rem;
     left: 1.6rem;
     font-family: 'Pacifico', cursive;
     font-weight: normal;
@@ -280,6 +282,7 @@ h2 {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-bottom: 0.1rem solid;
     margin-bottom: 0.3rem;
     padding-bottom: 0.2rem;
@@ -290,8 +293,8 @@ h2 {
     border-color: red;
 }
 
-#checkout span, label, data {
-    font-size: 1.5rem;
+#checkout span, #checkout label, #checkout data {
+    font-size: 1.8rem;
     font-weight: bold;
 }
 
@@ -321,7 +324,7 @@ h2 {
 }
 
 #tip-buttons button {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin: 0.25rem;
 } 
 
@@ -339,13 +342,11 @@ h2 {
 }
 
 #custom-tip-buttons button {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin: 0.25rem;
 }
 
 #tip-entry {
-    height: 2rem;
-    font-size: 2rem;
     margin: 0.25rem;
 }
 
@@ -354,7 +355,7 @@ h2 {
 }
 
 #payment-buttons button {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin: 0.25rem;
 }
 
@@ -365,6 +366,7 @@ h2 {
 
 #cash-input {
     margin-left: 0.5rem;
+    width: 50%;
 }
 
 #card-prompt {
@@ -373,10 +375,7 @@ h2 {
 }
 
 #card-prompt input {
-    width: 55%;
-    height: 2rem;
-    font-size: 2rem;
-    margin: 0.25rem;
+    width: 50%;
 }
 
 #cc-warning {
@@ -398,8 +397,8 @@ h2 {
     width: 100%;
 }
 
-#order-summary span, label, data {
-    font-size: 1.5rem;
+#order-summary span, #order-summary label, #order-summary data {
+    font-size: 1.8rem;
     font-weight: bold;
 }
 
@@ -428,9 +427,14 @@ h2 {
     margin-bottom: 0.5rem;
 }
 
+#popup-header {
+    margin-bottom: 0.5rem;
+}
+
 #popup-text p {
     font-size: 1.5rem;
     text-align: center;
+    margin-bottom: 0.5rem;
 }
 
 #popup-button {
