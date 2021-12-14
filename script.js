@@ -15,7 +15,7 @@ const menuDiv = document.getElementById('menu');
 const coffeeSection = document.getElementById('coffee');
 const otherDrinksSection = document.getElementById('other-drinks');
 const bakedGoodsSection = document.getElementById('baked-goods');
-const sandwichesSection = document.getElementById('sandwiches');
+const otherFoodsSection = document.getElementById('other-foods');
 
 const cartDiv = document.getElementById('cart');
 const cartItems = document.getElementById('cart-items');
@@ -109,10 +109,10 @@ function createProducts() {
     productArr.push(new Product("Muffin", "Baked Goods",
         "Baked fresh daily, with a rotating selection of styles and flavors!",
         2.99, "images/muffin.jpg"));
-    productArr.push(new Product("Avocado Toast", "Sandwiches",
+    productArr.push(new Product("Avocado Toast", "Other Foods",
         "Seasoned avocado mash spread on fresh whole-grain bread.",
         5.99, "images/avocado-toast.jpg"));
-    productArr.push(new Product("Sandwich", "Sandwiches",
+    productArr.push(new Product("Sandwich", "Other Foods",
         "Vegan patty on bread, topped with hummus, avocado, and veggies.",
         7.99, "images/breakfast-sandwich.jpg"));
 
@@ -189,8 +189,8 @@ function buildMenu() {
             case "Baked Goods":
                 bakedGoodsSection.appendChild(productDiv);
                 break;
-            case "Sandwiches":
-                sandwichesSection.appendChild(productDiv);
+            case "Other Foods":
+                otherFoodsSection.appendChild(productDiv);
                 break;
             default:
                 break;
