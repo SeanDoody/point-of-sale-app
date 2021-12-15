@@ -47,6 +47,7 @@ button {
     padding-right: 0.3rem;
     border-radius: 0.5rem;
     border: solid 0.1rem #412B15;
+    cursor: pointer;
 }
 
 .back-button {
@@ -67,6 +68,7 @@ input {
 select {
     border-radius: 0.5rem;
     border: solid 0.1rem #412B15;
+    cursor: pointer;
 }
 
 /* header */
@@ -472,7 +474,7 @@ h2 {
 
     #header-text h1 {
         font-size: 4.5rem;
-        text-shadow: -0.4rem 0 #654321, 0 0.4rem #654321, 0.4rem 0 #654321, 0 0.4rem #654321;
+        text-shadow: -0.35rem 0 #654321, 0 0.35rem #654321, 0.35rem 0 #654321, 0 0.35rem #654321;
     }
 
     #header-text p {
@@ -702,56 +704,129 @@ h2 {
 
 @media only screen and (min-width: 1025px) {
 
+    /* entire app */
+
+    input {
+        font-size: 3rem;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .back-button {
+        font-size: 2.5rem;
+    }
+
     /* header */
+
+    header {
+        padding-top: 0;
+        padding-bottom: 0.7rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
 
     #header-text {
         flex-direction: row;
         align-items: center;
     }
 
+    #header-text h1 {
+        font-size: 3.5rem;
+        text-shadow: -0.25rem 0 #654321, 0 0.25rem #654321, 0.25rem 0 #654321, 0 0.25rem #654321;
+    }
+
     #header-text p {
-        font-size: 3rem;
-        margin-left: 4rem;
+        font-size: 1.8rem;
+        margin-left: 2rem;
         margin-top: 0.5rem;
     }
 
+    .fa-mug-hot {
+        font-size: 5rem;
+    }
+
     .fa-prescription {
-        top: 4.5rem;
-        right: 4.5rem;
+        font-size: 2.6rem;
+        top: 2.7rem;
+        right: 2.7rem;
+    }
+
+    /* footer */
+
+    footer {
+        padding: 0.5rem;
+    }
+    
+    #footer-total {
+        font-size: 3.5rem;
+    }
+    
+    .fa-shopping-cart {
+        font-size: 4rem;
+    }
+    
+    #footer-item-count {
+        font-size: 2.5rem;
+        bottom: 1.4rem;
+        left: 2rem; 
+    }
+    
+    #footer-button {
+        font-size: 2.5rem;
+        height: 75%;
+        padding-top: 0;
+        padding-bottom: 1rem;
+        padding-left: 0.5rem;
+        padding-right: 1rem;
+        border-width: 0.2rem;
+        border-radius: 1.2rem;
     }
     
     /* main section */
 
     main {
-        width: 75%;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 12%;
+        padding-right: 12%;
     }
 
     h2 {
-        font-size: 6rem;
+        font-size: 5rem;
     }
 
     /* menu items */
 
     .product {
-        height: 20rem;
-        margin-bottom: 4rem;
+        height: 15rem;
+        margin-bottom: 3rem;
+        padding-left: 2rem;
     }
     
     .product img {
-        height: 20rem;
-        width: 20rem;
+        height: 15rem;
+        width: 15rem;
     }
     
     .product-name {
-        font-size: 5rem;
+        font-size: 4rem;
     }
     
     .product-price-header {
-        font-size: 5rem;
+        font-size: 4rem;
     }
     
     .product-description {
-        font-size: 4rem;
+        font-size: 3rem;
         text-overflow: clip;
         overflow: visible;
         white-space: normal;
@@ -762,46 +837,153 @@ h2 {
     }
     
     .product-footer select {
-        font-size: 4rem;
-        width: 8rem;
+        font-size: 3rem;
+        width: 6rem;
     }
     
     .product-footer button {
-        font-size: 4rem;
+        font-size: 3rem;
     }
     
     /* shopping cart */
 
     #cart-header {
         padding-top: 1rem;
-        margin-bottom: 2rem;
+        /* margin-bottom: 2rem; */
     }
 
     /* checkout */
+
+    #checkout {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
     #checkout-header {
         padding-top: 1rem;
         margin-bottom: 2rem;
     }
+    
+    .row {
 
+    }
+    
+    .error {
+        border-width: 0.5rem;
+    }
+    
+    #checkout span, #checkout label, #checkout data {
+        font-size: 3rem;
+        font-weight: bold;
+    }
+    
+    #cost-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #cost-info .row {
+        width: 75%;
+    }
+    
     #tip-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         margin-top: 2rem;
         margin-bottom: 2rem;
+    }
+    
+    #tip-buttons {
+        justify-content: center;
+    }
+    
+    #tip-buttons button {
+        font-size: 3rem;
+    } 
+    
+    #custom-tip {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #custom-tip-flex {
+
+    }
+    
+    #custom-tip-buttons {
+
+    }
+    
+    #custom-tip-buttons button {
+        font-size: 3rem;
+    }
+    
+    #tip-entry {
+
     }
 
     #payment-question {
         margin-top: 2rem;
     }
+    
+    #payment-buttons {
 
+    }
+    
+    #payment-buttons button {
+        font-size: 3rem;
+    }
+    
+    #cash-prompt {
+        width: 75%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    
+    #cash-input {
+
+    }
+    
+    #card-prompt {
+        width: 75%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    
+    #card-prompt input {
+
+    }
+    
     #cc-warning {
-        font-size: 4rem;
+        font-size: 3rem;
     }
 
     /* confirm payment */
 
     #confirm-payment-header {
         padding-top: 1rem;
-        margin-bottom: 2rem;
+    }
+
+    #order-summary {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #order-summary span, #order-summary label, #order-summary data {
+        font-size: 3rem;
+    }
+
+    #order-summary .row {
+        width: 75%;
     }
 
     /* popup */
@@ -810,8 +992,16 @@ h2 {
         width: 40%;
     }
 
-    #popup-text p {
+    #popup-header {
         font-size: 4rem;
+    }
+
+    #popup-text p {
+        font-size: 2.5rem;
+    }
+
+    #popup-button {
+        font-size: 3rem;
     }
 
 }

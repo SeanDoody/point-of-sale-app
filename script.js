@@ -92,10 +92,10 @@ function createProducts() {
         "Enjoy a strong, bold, rich cup of black tea. Brewed hot.",
         1.99, "images/black-tea.jpg"));
     productArr.push(new Product("Green Tea", "Other Drinks",
-        "Enjoy a refreshing cup of green tea. Brewed hot.",
+        "Enjoy a refreshing cup of our green tea. Brewed hot.",
         1.99, "images/green-tea.jpg"));
     productArr.push(new Product("Orange Juice", "Other Drinks",
-        "Squeezed daily from fresh Florida-grown oranges!",
+        "Our OJ is squeezed daily from fresh, Florida-grown oranges!",
         1.99, "images/orange-juice.jpg"));
     productArr.push(new Product("Bagel", "Baked Goods",
         "New York style bagel, topped with butter or cream cheese.",
