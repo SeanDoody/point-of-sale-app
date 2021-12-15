@@ -82,39 +82,49 @@ cvv.addEventListener('input', validateCvv);
 
 function createProducts() {
 
-    productArr.push(new Product("Hot Coffee", "Coffee",
-        "Our famous house blend, freshly ground and brewed hot.",
-        2.49, "images/coffee.jpg"));
-    productArr.push(new Product("Iced Coffee", "Coffee",
-        "Our famous house blend, freshly ground and brewed cold.",
-        2.49, "images/iced-coffee.jpg"));
-    productArr.push(new Product("Black Tea", "Other Drinks",
-        "Enjoy a strong, bold, rich cup of black tea. Brewed hot.",
-        1.99, "images/black-tea.jpg"));
-    productArr.push(new Product("Green Tea", "Other Drinks",
-        "Enjoy a refreshing cup of our green tea. Brewed hot.",
-        1.99, "images/green-tea.jpg"));
-    productArr.push(new Product("Orange Juice", "Other Drinks",
-        "Our OJ is squeezed daily from fresh, Florida-grown oranges!",
-        1.99, "images/orange-juice.jpg"));
-    productArr.push(new Product("Bagel", "Baked Goods",
-        "New York style bagel, topped with butter or cream cheese.",
-        2.99, "images/bagel.jpg"));
-    productArr.push(new Product("Donut", "Baked Goods",
-        "Baked fresh daily, with a rotating selection of styles and flavors!",
-        2.99, "images/donut.jpg"));
-    productArr.push(new Product("Scone", "Baked Goods",
-        "Enjoy a taste of England! Includes butter, jam, or cream.",
-        2.99, "images/scone.jpg"));
-    productArr.push(new Product("Muffin", "Baked Goods",
-        "Baked fresh daily, with a rotating selection of styles and flavors!",
-        2.99, "images/muffin.jpg"));
-    productArr.push(new Product("Avocado Toast", "Other Foods",
-        "Seasoned avocado mash spread on fresh whole-grain bread.",
-        5.99, "images/avocado-toast.jpg"));
-    productArr.push(new Product("Sandwich", "Other Foods",
-        "Vegan patty on bread, topped with hummus, avocado, and veggies.",
-        7.99, "images/sandwich.jpg"));
+    productArr.push(new Product('Hot Coffee', 'Coffee',
+        'Our famous house blend, freshly ground and brewed hot.',
+        2.49, 'images/coffee.jpg'));
+
+    productArr.push(new Product('Iced Coffee', 'Coffee',
+        'Our famous house blend, freshly ground and brewed cold.',
+        2.49, 'images/iced-coffee.jpg'));
+
+    productArr.push(new Product('Black Tea', 'Other Drinks',
+        'Enjoy a strong, bold, rich cup of black tea. Brewed hot.',
+        1.99, 'images/black-tea.jpg'));
+
+    productArr.push(new Product('Green Tea', 'Other Drinks',
+        'Enjoy a refreshing cup of our green tea. Brewed hot.',
+        1.99, 'images/green-tea.jpg'));
+
+    productArr.push(new Product('Orange Juice', 'Other Drinks',
+        'Our OJ is squeezed daily from fresh, Florida-grown oranges!',
+        1.99, 'images/orange-juice.jpg'));
+
+    productArr.push(new Product('Bagel', 'Baked Goods',
+        'New York style bagel, topped with butter or cream cheese.',
+        2.99, 'images/bagel.jpg'));
+
+    productArr.push(new Product('Donut', 'Baked Goods',
+        'Baked fresh daily, with a rotating selection of styles and flavors!',
+        2.99, 'images/donut.jpg'));
+
+    productArr.push(new Product('Scone', 'Baked Goods',
+        'Enjoy a taste of England! Includes butter, jam, or cream.',
+        2.99, 'images/scone.jpg'));
+
+    productArr.push(new Product('Muffin', 'Baked Goods',
+        'Baked fresh daily, with a rotating selection of styles and flavors!',
+        2.99, 'images/muffin.jpg'));
+
+    productArr.push(new Product('Avocado Toast', 'Other Foods',
+        'Seasoned avocado mash spread on fresh whole-grain bread.',
+        5.99, 'images/avocado-toast.jpg'));
+
+    productArr.push(new Product('Sandwich', 'Other Foods',
+        'Vegan patty on bread, topped with hummus, avocado, and veggies.',
+        7.99, 'images/sandwich.jpg'));
 
 }
 
@@ -175,27 +185,27 @@ function buildMenu() {
         }
 
         const plusIcon = document.createElement('i');
-        plusIcon.className = "fas fa-plus-square";
+        plusIcon.className = 'fas fa-plus-square';
         plusIcon.addEventListener('click', addToCart);
         productFooter.appendChild(plusIcon);
 
         const cartButton = document.createElement('button');
-        cartButton.innerText = "Add to Cart";
+        cartButton.innerText = 'Add to Cart';
         cartButton.classList.add('add-to-cart');
         cartButton.addEventListener('click', addToCart);
         productFooter.appendChild(cartButton);
 
         switch (product.category) {
-            case "Coffee":
+            case 'Coffee':
                 coffeeSection.appendChild(productDiv);
                 break;
-            case "Other Drinks":
+            case 'Other Drinks':
                 otherDrinksSection.appendChild(productDiv);
                 break;
-            case "Baked Goods":
+            case 'Baked Goods':
                 bakedGoodsSection.appendChild(productDiv);
                 break;
-            case "Other Foods":
+            case 'Other Foods':
                 otherFoodsSection.appendChild(productDiv);
                 break;
             default:
@@ -210,17 +220,19 @@ function updateFooterTotals() {
 
     let items = 0;
     let cost = 0.00;
+
     for (let product of cartArr) {
         items += product.quantity;
         cost += product.quantity * product.price;
     }
+
     cost = parseFloat(cost.toFixed(2));
+
     footerItemCount.value = items;
     footerItemCount.innerText = items;
     footerTotal.value = cost;
     footerTotal.innerText = `$${cost.toFixed(2)}*`
-    // console.log('footerTotal');
-    // console.log(cost);
+
 }
 
 function addToCart(event) {
@@ -231,14 +243,15 @@ function addToCart(event) {
     const description = productDiv.querySelector('.product-description').innerText;
     const price = parseFloat(productDiv.querySelector('.product-price-header').value);
     const picture = productDiv.querySelector('img').src;
-
     const buttonType = event.target.nodeName;
     let quantity = 1;
+
     if (buttonType === 'BUTTON') {
         quantity = parseInt(productDiv.querySelector('select').value);
     }
 
     const index = cartArr.findIndex(p => p.name === name);
+
     if (index === -1) {
         cartArr.push(new Product(name, category, description, price, picture, quantity));
     }
@@ -255,15 +268,18 @@ function addToCart(event) {
 }
 
 function updateQuantity(event) {
+
     const newQuantity = parseInt(event.target.value);
     const product = event.target.parentNode.parentNode.parentNode;
     const productName = product.querySelector('.product-name').innerText;
     const index = cartArr.findIndex(p => p.name === productName);
     cartArr[index].quantity = newQuantity;
     updateFooterTotals();
+
 }
 
 function subtractFromCart(event) {
+
     const product = event.target.parentNode.parentNode.parentNode;
     const productName = product.querySelector('.product-name').innerText;
     const index = cartArr.findIndex(p => p.name === productName);
@@ -281,10 +297,11 @@ function subtractFromCart(event) {
 
     if (cartArr.length === 0) {
         const emptyCart = document.createElement('p');
-        emptyCart.id = "cart-message";
-        emptyCart.innerText = "Your cart is empty.";
+        emptyCart.id = 'cart-message';
+        emptyCart.innerText = 'Your cart is empty.';
         cartItems.appendChild(emptyCart);
     }
+
 }
 
 function removeFromCart(event) {
@@ -292,13 +309,15 @@ function removeFromCart(event) {
     const product = event.target.parentNode.parentNode.parentNode;
     const productName = product.querySelector('.product-name').innerText;
     const index = cartArr.findIndex(p => p.name === productName);
+
     cartArr.splice(index, 1);
     product.remove();
     updateFooterTotals();
+
     if (cartArr.length === 0) {
         const emptyCart = document.createElement('p');
-        emptyCart.id = "cart-message";
-        emptyCart.innerText = "Your cart is empty.";
+        emptyCart.id = 'cart-message';
+        emptyCart.innerText = 'Your cart is empty.';
         cartItems.appendChild(emptyCart);
     }
 
@@ -314,15 +333,17 @@ function toggleHidden(element1, element2) {
 function showCart() {
 
     toggleHidden(menuDiv, cartDiv);
-    footerButton.innerText = "Checkout";
+    footerButton.innerText = 'Checkout';
     footerButton.removeEventListener('click', showCart);
     footerButton.addEventListener('click', showCheckout);
 
     if (cartArr.length === 0) {
+
         const emptyCart = document.createElement('p');
-        emptyCart.id = "cart-message";
-        emptyCart.innerText = "Your cart is empty.";
+        emptyCart.id = 'cart-message';
+        emptyCart.innerText = 'Your cart is empty.';
         cartItems.appendChild(emptyCart);
+
     } else {
 
         for (let product of cartArr) {
@@ -365,38 +386,43 @@ function showCart() {
 
             const qtySelect = document.createElement('select');
             productFooter.appendChild(qtySelect);
+
             for (let i = 1; i <= 99; i++) {
                 const option = document.createElement('option');
                 option.value = i;
                 option.text = i;
                 qtySelect.appendChild(option);
             }
+
             qtySelect.value = product.quantity;
             qtySelect.addEventListener('change', updateQuantity);
 
             const minusIcon = document.createElement('i');
-            minusIcon.className = "fas fa-minus-square";
+            minusIcon.className = 'fas fa-minus-square';
             minusIcon.addEventListener('click', subtractFromCart);
             productFooter.appendChild(minusIcon);
 
             const removeButton = document.createElement('button');
-            removeButton.innerText = "Remove from Cart";
+            removeButton.innerText = 'Remove from Cart';
             removeButton.classList.add('remove-from-cart');
             removeButton.addEventListener('click', removeFromCart);
             productFooter.appendChild(removeButton);
 
             cartItems.appendChild(productDiv);
+
         }
 
     }
+
 }
 
 function hideCart() {
 
     toggleHidden(menuDiv, cartDiv);
-    footerButton.innerText = "View Order";
+    footerButton.innerText = 'View Order';
     footerButton.removeEventListener('click', showCheckout);
     footerButton.addEventListener('click', showCart);
+
     while (cartItems.firstChild) {
         cartItems.removeChild(cartItems.firstChild);
     }
@@ -406,12 +432,7 @@ function hideCart() {
 function toggleClicked(event) {
 
     const parent = event.currentTarget;
-    // console.log('parent');
-    // console.log(parent);
-
     const clicked = event.target;
-    // console.log('clicked');
-    // console.log(clicked);
 
     if (parent !== clicked) {
         for (let i = 0; i < parent.children.length; i++) {
@@ -430,45 +451,40 @@ function updateCheckoutTotals() {
     updateFooterTotals();
 
     const subtotal = parseFloat(footerTotal.value);
-    // console.log('subtotal');
-    // console.log(subtotal);
-
     const tax = parseFloat((subtotal * 0.06).toFixed(2));
-    // console.log('tax');
-    // console.log(tax);
-
     const total = parseFloat((subtotal + tax).toFixed(2));
-    // console.log('total');
-    // console.log(total);
-
     const tipButton = tipButtons.querySelector('.clicked');
     let tipPercent = 0.00;
     let tip = 0.00;
 
-    if (tipButton.id === "tip-other") {
+    if (tipButton.id === 'tip-other') {
+
         customTipDiv.hidden = false;
         const tipType = customTipButtons.querySelector('.clicked').value;
+
         if (customTipEntry.value.length > 0) {
+
             if (tipType === '%') {
+
                 tipPercent = parseFloat(customTipEntry.value) / 100;
                 tip = parseFloat((total * tipPercent).toFixed(2));
+
             } else {
+
                 tip = parseFloat(customTipEntry.value);
+
             }
         }
+
     } else {
+
         customTipDiv.hidden = true;
         tipPercent = parseFloat(tipButton.value);
         tip = parseFloat((total * tipPercent).toFixed(2));
+
     }
-    // console.log('tipPercent');
-    // console.log(tipPercent);
-    // console.log('tip');
-    // console.log(tip);
 
     const grandTotal = parseFloat((total + tip).toFixed(2));
-    // console.log('grandTotal');
-    // console.log(grandTotal);
 
     checkoutSubtotal.value = subtotal;
     checkoutSubtotal.innerText = `$${subtotal.toFixed(2)}`;
@@ -493,10 +509,10 @@ function updateCheckoutTotals() {
 function showCheckout() {
 
     if (cartArr.length === 0) {
-        showPopup("Error!", [ "Nothing in cart! Add an item to continue to checkout." ], hidePopup);
+        showPopup('Error!', [ 'Nothing in cart! Add an item to continue to checkout.' ], hidePopup);
     } else {
         toggleHidden(cartDiv, checkoutDiv);
-        footerButton.innerText = "Review Payment";
+        footerButton.innerText = 'Review Payment';
         footerButton.removeEventListener('click', showCheckout);
         footerButton.addEventListener('click', validatePayment);
         updateCheckoutTotals();
@@ -507,7 +523,7 @@ function showCheckout() {
 function hideCheckout() {
 
     toggleHidden(cartDiv, checkoutDiv);
-    footerButton.innerText = "Checkout";
+    footerButton.innerText = 'Checkout';
     footerButton.removeEventListener('click', validatePayment);
     footerButton.addEventListener('click', showCheckout);
     updateFooterTotals();
@@ -515,13 +531,17 @@ function hideCheckout() {
 }
 
 function showCash() {
+
     cashPrompt.hidden = false;
     cardPrompt.hidden = true;
+
 }
 
 function showCard() {
+
     cardPrompt.hidden = false;
     cashPrompt.hidden = true;
+
 }
 
 function validateCash() {
@@ -532,7 +552,7 @@ function validateCash() {
     if (inputValue === '') {
 
         pass = false;
-        cashInput.className = "error";
+        cashInput.className = 'error';
 
     } else {
 
@@ -542,10 +562,10 @@ function validateCash() {
     
         if (inputValue < grandTotal) {
             pass = false;
-            cashInput.className = "error";
+            cashInput.className = 'error';
         } else {
             pass = true;
-            cashInput.className = "";
+            cashInput.className = '';
         }
     
     }
@@ -561,10 +581,10 @@ function validateCardNumber() {
 
     if (length === 15 || length === 16) {
         pass = true;
-        cardNumber.className = "";
+        cardNumber.className = '';
     } else {
         pass = false;
-        cardNumber.className = "error";
+        cardNumber.className = 'error';
     }
 
     return pass;
@@ -577,28 +597,30 @@ function validateExpDate() {
     const length = inputValue.length;
     let pass;
 
-    // console.log('length = ' + length);
     if (length === 5) {
-        // console.log('passed length');
+
         const firstTwo = parseInt(inputValue[0] + inputValue[1]);
-        // console.log('first two = ' + firstTwo);
+
         if (firstTwo >= 1 && firstTwo <= 12) {
-            // console.log('passed first two');
-            // console.log('third char = ' + inputValue[2]);
+
             if (inputValue[2] = '/') {
-                // console.log('passed /');
+
                 const lastTwo = parseInt(inputValue[3] + inputValue[4]);
-                // console.log('last two = ' + lastTwo);
+
                 if (lastTwo >= 21 && lastTwo <= 30) {
-                    // console.log('passed last two');
+
                     pass = true;
-                    expDate.className = "";
+                    expDate.className = '';
+
                 }
             }
         }
+
     } else {
+
         pass = false;
-        expDate.className = "error";
+        expDate.className = 'error';
+
     }
 
     return pass;
@@ -612,10 +634,10 @@ function validateCvv() {
 
     if (length === 3 || length === 4) {
         pass = true;
-        cvv.className = "";
+        cvv.className = '';
     } else {
         pass = false;
-        cvv.className = "error";
+        cvv.className = 'error';
     }
 
     return pass;
@@ -630,36 +652,33 @@ function validatePayment() {
     const messages = [];
 
     if (paymentType === 'cash') {
+
         if (validateCash() === false) {
+
             pass = false;
-            messages.push("Cash amount must be greater than or equal to amount due.")
-            // console.log('failed cash');
-        } else {
-            // console.log('passed cash');
+            messages.push('Cash amount must be greater than or equal to amount due.')
+
         }
+
     } else {
-        messages.push("Please correct the following issues:")
+
+        messages.push('Please correct the following issues:')
+
         if (validateCardNumber() === false) {
             pass = false;
-            messages.push("Card number: 15-16 digits")
-            // console.log('failed card number');
-        } else {
-            // console.log('passed card number');
+            messages.push('Card number: 15-16 digits')
         }
+
         if (validateExpDate() === false) {
             pass = false;
-            messages.push("Exp. date: mm/yy")
-            // console.log('failed exp date');
-        } else {
-            // console.log('passed exp date');
+            messages.push('Exp. date: mm/yy')
         }
+
         if (validateCvv() === false) {
             pass = false;
-            messages.push("CVV: 3-4 digits")
-            // console.log('failed cvv');
-        } else {
-            // console.log('passed cvv');
+            messages.push('CVV: 3-4 digits')
         }
+
     }
 
     if (pass) {
@@ -686,12 +705,14 @@ function showPopup(title, messageArr, buttonEvent) {
 }
 
 function hidePopup() {
+
     while (popupText.firstChild) {
         popupText.removeChild(popupText.firstChild);
     }
     popupDiv.hidden = true;
-    wrapperDiv.className = "";
+    wrapperDiv.className = '';
     popupButton.removeEventListener('click', hidePopup);
+
 }
 
 function showReview() {
@@ -700,7 +721,7 @@ function showReview() {
 
     toggleHidden(checkoutDiv, confirmPayment);
 
-    footerButton.innerText = "Submit Payment";
+    footerButton.innerText = 'Submit Payment';
     footerButton.removeEventListener('click', validatePayment);
     footerButton.addEventListener('click', submitPayment);
 
@@ -709,7 +730,7 @@ function showReview() {
     orderSummary.appendChild(row1);
 
     const row1Name = document.createElement('span');
-    row1Name.innerText = "Order Total";
+    row1Name.innerText = 'Order Total';
     row1.appendChild(row1Name);
 
     const total = parseFloat(footerTotal.value);
@@ -738,25 +759,25 @@ function showReview() {
     const row3Value = document.createElement('data');
     row3.appendChild(row3Value);
 
-    if (paymentType === "cash") {
+    if (paymentType === 'cash') {
 
         const cashPaid = parseFloat(cashInput.value);
         const changeDue = cashPaid - total;
 
-        row2Name.innerText = "Cash Paid";
+        row2Name.innerText = 'Cash Paid';
         row2Value.value = cashPaid;
         row2Value.innerText = `$${cashPaid.toFixed(2)}`;
-        row3Name.innerText = "Change";
+        row3Name.innerText = 'Change';
         row3Value.value = changeDue;
         row3Value.innerText = `$${changeDue.toFixed(2)}`;
 
     } else {
 
         let cardNum = cardNumber.value.toString();
-        cardNum = "x" + cardNum.substr(cardNum.length - 4);
-        row2Name.innerText = "Card Ending";
+        cardNum = 'x' + cardNum.substr(cardNum.length - 4);
+        row2Name.innerText = 'Card Ending';
         row2Value.innerText = cardNum;
-        row3Name.innerText = "Expiration Date";
+        row3Name.innerText = 'Expiration Date';
         row3Value.innerText = expDate.value;
 
     }
@@ -771,30 +792,32 @@ function hideReview() {
 
     toggleHidden(checkoutDiv, confirmPayment);
 
-    footerButton.innerText = "Review Payment";
+    footerButton.innerText = 'Review Payment';
     footerButton.removeEventListener('click', submitPayment);
     footerButton.addEventListener('click', validatePayment);
 
 }
 
 function reloadPage() {
+
     location.reload();
+    
 }
 
 function submitPayment() {
 
     const messages = [];
-    let payMessage = "";
+    let payMessage = '';
 
-    if (orderSummary.children[2].children[0].innerText === "Change") {
-        payMessage = "Don't forget to take your change."
+    if (orderSummary.children[2].children[0].innerText === 'Change') {
+        payMessage = 'Don\'t forget to take your change.'
     } else {
-        payMessage = "Your card was successfully charged."
+        payMessage = 'Your card was successfully charged.'
     }
 
     messages.push(payMessage);
-    messages.push("Please come again!");
+    messages.push('Please come again!');
 
-    showPopup("Thank You!", messages, reloadPage);
+    showPopup('Thank You!', messages, reloadPage);
 
 }
