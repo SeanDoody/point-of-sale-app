@@ -1,13 +1,7 @@
-add veggie wrap
-change breakfast-sandwich.jpg to sandwich.jpg
-
-bugs
-    position footer total relative to parent? so it doesn't move on "bounce"
-
 validations
-    wash out button color until user can proceed
+    fade button color until user can proceed
 
-stretch: expanded view
+expanded view
     show zoomed in view of picture, desc, etc.
     add ons/modifications (creamer, sugar, etc)
     "add to cart" button with dropdown for quantity
@@ -19,7 +13,3 @@ desktop styling
     use original mobile design, just bigger
     add tagline to header
     add Java Script Rx logo to popup at end
-
-tablet styling
-    use mobile design, but add description preview and quantity dropdown
-    add tagline to header

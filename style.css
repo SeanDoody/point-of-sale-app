@@ -52,7 +52,6 @@ button {
     height: 100%;
     font-size: 1.5rem;
     font-weight: bold;
-    /* color: #d2c1b0; */
     background-color: #ad6d2f;
 }
 
@@ -74,7 +73,7 @@ header {
     flex-shrink: 0;
     padding: 0.5rem;
     background-color: #ad6d2f;
-    border-bottom: solid 0.1rem;
+    border-bottom: solid 0.1rem #412B15;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -95,8 +94,6 @@ header {
 
 #header-text p {
     display: none;
-    font-family: 'Pacifico', cursive;
-    color: #654321;
 }
 
 .fa-mug-hot {
@@ -118,7 +115,7 @@ footer {
     flex-shrink: 0;
     padding: 0.5rem;
     background-color: #ad6d2f;
-    border-top: solid 0.1rem #654321;
+    border-top: solid 0.1rem #412B15;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -186,8 +183,6 @@ h2 {
     width: 95%;
     margin: 0.5rem;
     margin-bottom: 1rem;
-    /* border: solid 2px #412B15;
-    border-radius: 0.5rem; */
 }
 
 .product img {
@@ -200,7 +195,6 @@ h2 {
 .product-text {
     display: flex;
     flex-direction: column;
-    align-items: space-between;
     margin-left: 0.5rem;
     height: 100%;
     width: 100%;
@@ -210,18 +204,11 @@ h2 {
     font-size: 2rem;
 }
 
-.price {
-    font-size: 2rem;
-    font-weight: bold;
+.product-price-header {
+    display: none;
 }
 
-.product-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.description {
+.product-description {
     display: none;
     font-size: 1rem;
 }
@@ -231,7 +218,15 @@ h2 {
     justify-content: space-between;
 }
 
+.product-price-footer {
+    font-size: 2rem;
+}
+
 .product-footer select {
+    display: none;
+}
+
+.product-footer button {
     display: none;
 }
 
@@ -250,6 +245,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0.25rem;
 }
 
 #cart-items {
@@ -446,4 +442,266 @@ h2 {
 
 .blur {
     filter: blur(1rem);
+}
+
+/* tablet styling */
+
+@media only screen and (min-width: 768px) {
+
+    /* entire app */
+
+    button {
+        border-width: 0.3rem;
+        border-radius: 2rem;
+        padding-left: 1rem;
+        padding-right: 1.5rem;
+    }
+
+    .back-button {
+        font-size: 3rem;
+    }
+
+    input {
+        font-size: 4rem;
+        border-radius: 2rem;
+        border-width: 0.3rem;
+    }
+
+    /* header */
+
+    header {
+        padding: 1rem;
+        border-width: 0.3rem;
+    }
+
+    #header-text h1 {
+        font-size: 4.5rem;
+        text-shadow: -0.4rem 0 #654321, 0 0.4rem #654321, 0.4rem 0 #654321, 0 0.4rem #654321;
+    }
+
+    #header-text p {
+        display: block;
+        font-size: 2rem;
+        font-family: 'Pacifico', cursive;
+        color: #654321;
+        margin-top: -0.5rem;
+    }
+
+    .fa-mug-hot {
+        font-size: 8rem;
+    }
+
+    .fa-prescription {
+        top: 6rem;
+        right: 4.4rem;
+        font-size: 4rem;
+        color: #d2c1b0;
+    }
+
+    /* footer */
+
+    footer {
+        padding: 1rem;
+        border-width: 0.3rem;
+    }
+
+    #footer-total {
+        font-size: 4rem;
+    }
+
+    .fa-shopping-cart {
+        font-size: 7rem;
+    }
+
+    #footer-item-count {
+        font-size: 4rem;
+        bottom: 2.9rem;
+        left: 3.7rem;
+    }
+
+    #footer-button {
+        font-size: 4rem;
+        padding: 1rem;
+        padding-right: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    /* main section */
+
+    main {
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 5rem;
+    }
+
+    /* menu items */
+
+    .product {
+        height: 12rem;
+        max-height: 12rem;
+        margin: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .product img {
+        height: 12rem;
+        width: 12rem;
+        border-radius: 2rem;
+        margin-right: 1rem;
+        border-width: 0.3rem;
+    }
+
+    .product-text {
+        justify-content: space-between;
+        min-width: 0;
+    }
+
+    .product-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .name {
+        font-size: 4rem;
+    }
+
+    .product-price-header {
+        display: block;
+        font-size: 4rem;
+    }
+
+    .product-description {
+        display: block;
+        font-size: 2.5rem;
+        text-overflow: ellipsis;
+        overflow: hidden;    
+        white-space: nowrap;
+    }
+
+    .product-footer {
+        justify-content: flex-end;
+    }
+
+    .product-price-footer {
+        display: none;
+    }
+
+    .product i {
+        display: none;
+    }
+
+    .product-footer select {
+        display: block;
+        font-size: 2.5rem;
+        width: 5.5rem;
+        font-weight: bold;
+        border-radius: 1rem;
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+        border-width: 0.2rem;
+    }
+
+    .product-footer button {
+        display: block;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-left: 0.5rem;
+        padding-left: 0.5rem;
+        padding-right: 1rem;
+        border-radius: 1rem;
+        border-width: 0.2rem;
+    }
+
+    /* shopping cart */
+
+    #cart-message {
+        font-size: 4rem;
+    }
+
+    .row {
+        border-width: 0.25rem;
+    }
+
+    .error {
+        border-width: 1rem;
+    }
+
+    #checkout span, #checkout label, #checkout data {
+        font-size: 4rem;
+    }
+
+    #cost-info {
+        margin-bottom: 1rem;
+    }
+
+    #tip-buttons button {
+        font-size: 4rem;
+        margin: 1rem;
+    } 
+
+    #custom-tip-buttons button {
+        font-size: 4rem;
+        margin: 1rem;
+    }
+
+    #tip-entry {
+        margin: 1rem;
+    }
+
+    #payment-buttons button {
+        font-size: 4rem;
+    }
+
+    #cash-prompt {
+        margin-top: 1rem;
+    }
+
+    #cash-prompt * {
+        margin-bottom: 0.5rem;
+    }
+
+    #card-prompt {
+        margin-top: 1rem;
+    }
+
+    #card-prompt * {
+        margin-bottom: 0.5rem;
+    }
+
+    #cc-warning {
+        font-size: 3rem;
+    }
+
+    /* confirm payment */
+
+    #order-summary span, #order-summary label, #order-summary data {
+        font-size: 4rem;
+    }
+
+    /* popup */
+
+    #popup {
+        width: 60%;
+        padding: 2rem;
+        border-radius: 2rem;
+        border-width: 0.5rem;
+    }
+
+    #popup-text p {
+        font-size: 3rem;
+    }
+
+    #popup-button {
+        font-size: 3.5rem;
+    }
+
+}
+
+/* desktop styling */
+
+@media only screen and (min-width: 1025px) {
+
 }

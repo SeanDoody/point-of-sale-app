@@ -95,7 +95,7 @@ function createProducts() {
         "Enjoy a refreshing cup of green tea. Brewed hot.",
         1.99, "images/green-tea.jpg"));
     productArr.push(new Product("Orange Juice", "Other Drinks",
-        "Made from fresh Florida-grown oranges!",
+        "Squeezed daily from fresh Florida-grown oranges!",
         1.99, "images/orange-juice.jpg"));
     productArr.push(new Product("Bagel", "Baked Goods",
         "New York style bagel, topped with butter or cream cheese.",
@@ -114,7 +114,7 @@ function createProducts() {
         5.99, "images/avocado-toast.jpg"));
     productArr.push(new Product("Sandwich", "Other Foods",
         "Vegan patty on bread, topped with hummus, avocado, and veggies.",
-        7.99, "images/breakfast-sandwich.jpg"));
+        7.99, "images/sandwich.jpg"));
 
 }
 
@@ -138,6 +138,11 @@ function buildMenu() {
         productHeader.classList.add('product-header');
         productText.appendChild(productHeader);
 
+        const productDesc = document.createElement('p');
+        productDesc.classList.add('product-description');
+        productDesc.innerText = product.description;
+        productText.appendChild(productDesc);
+
         const productFooter = document.createElement('div');
         productFooter.classList.add('product-footer');
         productText.appendChild(productFooter);
@@ -147,16 +152,17 @@ function buildMenu() {
         productName.innerText = product.name;
         productHeader.appendChild(productName);
 
-        const productPrice = document.createElement('data');
-        productPrice.classList.add('price');
-        productPrice.innerText = `$${product.price.toFixed(2)}`;
-        productPrice.value = product.price;
-        productFooter.appendChild(productPrice);
+        const productPriceHeader = document.createElement('data');
+        productPriceHeader.classList.add('product-price-header');
+        productPriceHeader.innerText = `$${product.price.toFixed(2)}`;
+        productPriceHeader.value = product.price;
+        productHeader.appendChild(productPriceHeader);
 
-        const productDesc = document.createElement('p');
-        productDesc.classList.add('description');
-        productDesc.innerText = product.description;
-        productText.appendChild(productDesc);
+        const productPriceFooter = document.createElement('data');
+        productPriceFooter.classList.add('product-price-footer');
+        productPriceFooter.innerText = `$${product.price.toFixed(2)}`;
+        productPriceFooter.value = product.price;
+        productFooter.appendChild(productPriceFooter);
 
         const qtySelect = document.createElement('select');
         productFooter.appendChild(qtySelect);
@@ -168,16 +174,16 @@ function buildMenu() {
             qtySelect.appendChild(option);
         }
 
-        const cartButton = document.createElement('i');
-        cartButton.className = "fas fa-plus-square";
+        const plusIcon = document.createElement('i');
+        plusIcon.className = "fas fa-plus-square";
+        plusIcon.addEventListener('click', addToCart);
+        productFooter.appendChild(plusIcon);
+
+        const cartButton = document.createElement('button');
+        cartButton.innerText = "Add to Cart";
+        cartButton.classList.add('add-to-cart');
         cartButton.addEventListener('click', addToCart);
         productFooter.appendChild(cartButton);
-
-        // const cartButton = document.createElement('button');
-        // cartButton.innerText = "Add to Cart";
-        // cartButton.classList.add('add-to-cart');
-        // cartButton.addEventListener('click', addToCart);
-        // productFooter.appendChild(cartButton);
 
         switch (product.category) {
             case "Coffee":
@@ -222,10 +228,15 @@ function addToCart(event) {
     const productDiv = event.target.parentNode.parentNode.parentNode;
     const name = productDiv.querySelector('.name').innerText;
     const category = productDiv.parentNode.querySelector('h3').innerText;
-    const description = productDiv.querySelector('.description').innerText;
-    const price = parseFloat(productDiv.querySelector('.price').value);
+    const description = productDiv.querySelector('.product-description').innerText;
+    const price = parseFloat(productDiv.querySelector('.product-price-header').value);
     const picture = productDiv.querySelector('img').src;
-    let quantity = parseInt(productDiv.querySelector('select').value);
+
+    const buttonType = event.target.nodeName;
+    let quantity = 1;
+    if (buttonType === 'BUTTON') {
+        quantity = parseInt(productDiv.querySelector('select').value);
+    }
 
     const index = cartArr.findIndex(p => p.name === name);
     if (index === -1) {
@@ -262,8 +273,8 @@ function subtractFromCart(event) {
         product.remove();
     } else {
         cartArr[index].quantity--;
-        const productPrice = product.querySelector('.price');
-        productPrice.innerText = `$${cartArr[index].price.toFixed(2)} x ${cartArr[index].quantity}`;
+        const productPriceFooter = product.querySelector('.price');
+        productPriceFooter.innerText = `$${cartArr[index].price.toFixed(2)} x ${cartArr[index].quantity}`;
     }
 
     updateFooterTotals();
@@ -332,6 +343,11 @@ function showCart() {
             productHeader.classList.add('product-header');
             productText.appendChild(productHeader);
 
+            const productDesc = document.createElement('p');
+            productDesc.classList.add('product-description');
+            productDesc.innerText = product.description;
+            productText.appendChild(productDesc);
+
             const productFooter = document.createElement('div');
             productFooter.classList.add('product-footer');
             productText.appendChild(productFooter);
@@ -341,16 +357,11 @@ function showCart() {
             productName.innerText = product.name;
             productHeader.appendChild(productName);
 
-            const productPrice = document.createElement('data');
-            productPrice.classList.add('price');
-            productPrice.innerText = `$${product.price.toFixed(2)} x ${product.quantity}`;
-            productPrice.value = product.price;
-            productFooter.appendChild(productPrice);
-
-            const productDesc = document.createElement('p');
-            productDesc.classList.add('description');
-            productDesc.innerText = product.description;
-            productText.appendChild(productDesc);
+            const productPriceFooter = document.createElement('data');
+            productPriceFooter.classList.add('product-price-footer');
+            productPriceFooter.innerText = `$${product.price.toFixed(2)} x ${product.quantity}`;
+            productPriceFooter.value = product.price;
+            productFooter.appendChild(productPriceFooter);
 
             const qtySelect = document.createElement('select');
             productFooter.appendChild(qtySelect);
@@ -363,16 +374,16 @@ function showCart() {
             qtySelect.value = product.quantity;
             qtySelect.addEventListener('change', updateQuantity);
 
-            const minusButton = document.createElement('i');
-            minusButton.className = "fas fa-minus-square";
-            minusButton.addEventListener('click', subtractFromCart);
-            productFooter.appendChild(minusButton);
+            const minusIcon = document.createElement('i');
+            minusIcon.className = "fas fa-minus-square";
+            minusIcon.addEventListener('click', subtractFromCart);
+            productFooter.appendChild(minusIcon);
 
-            // const removeButton = document.createElement('button');
-            // removeButton.innerText = "Remove from Cart";
-            // removeButton.classList.add('remove-from-cart');
-            // removeButton.addEventListener('click', removeFromCart);
-            // productFooter.appendChild(removeButton);
+            const removeButton = document.createElement('button');
+            removeButton.innerText = "Remove from Cart";
+            removeButton.classList.add('remove-from-cart');
+            removeButton.addEventListener('click', removeFromCart);
+            productFooter.appendChild(removeButton);
 
             cartItems.appendChild(productDiv);
         }
