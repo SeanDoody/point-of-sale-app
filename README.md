@@ -1,6 +1,6 @@
 # point-of-sale-app
 https://java-script-coffee-rx.netlify.app/
 Point of sale project using HTML, CSS, and vanilla JavaScript.
-Project option from Grand Circus Front-End bootcamp, but all code is mine.
-Mobile styling almost complete - desktop styling not finished. 
-Extra validations are still needed for payment method.
+This was a group project option from Grand Circus' Front-End bootcamp. Since my group chose a different option, I built this app by myself for extra practice. All code is mine.
+Three separate views for mobile, tablet, and desktop screens.
+Images are all free to use from unsplash.com.
