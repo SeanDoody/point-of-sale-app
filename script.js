@@ -148,7 +148,7 @@ function buildMenu() {
         productText.appendChild(productFooter);
 
         const productName = document.createElement('h3');
-        productName.classList.add('name');
+        productName.classList.add('product-name');
         productName.innerText = product.name;
         productHeader.appendChild(productName);
 
@@ -226,7 +226,7 @@ function updateFooterTotals() {
 function addToCart(event) {
 
     const productDiv = event.target.parentNode.parentNode.parentNode;
-    const name = productDiv.querySelector('.name').innerText;
+    const name = productDiv.querySelector('.product-name').innerText;
     const category = productDiv.parentNode.querySelector('h3').innerText;
     const description = productDiv.querySelector('.product-description').innerText;
     const price = parseFloat(productDiv.querySelector('.product-price-header').value);
@@ -257,7 +257,7 @@ function addToCart(event) {
 function updateQuantity(event) {
     const newQuantity = parseInt(event.target.value);
     const product = event.target.parentNode.parentNode.parentNode;
-    const productName = product.querySelector('.name').innerText;
+    const productName = product.querySelector('.product-name').innerText;
     const index = cartArr.findIndex(p => p.name === productName);
     cartArr[index].quantity = newQuantity;
     updateFooterTotals();
@@ -265,7 +265,7 @@ function updateQuantity(event) {
 
 function subtractFromCart(event) {
     const product = event.target.parentNode.parentNode.parentNode;
-    const productName = product.querySelector('.name').innerText;
+    const productName = product.querySelector('.product-name').innerText;
     const index = cartArr.findIndex(p => p.name === productName);
 
     if (cartArr[index].quantity === 1) {
@@ -290,7 +290,7 @@ function subtractFromCart(event) {
 function removeFromCart(event) {
 
     const product = event.target.parentNode.parentNode.parentNode;
-    const productName = product.querySelector('.name').innerText;
+    const productName = product.querySelector('.product-name').innerText;
     const index = cartArr.findIndex(p => p.name === productName);
     cartArr.splice(index, 1);
     product.remove();
@@ -353,7 +353,7 @@ function showCart() {
             productText.appendChild(productFooter);
 
             const productName = document.createElement('h3');
-            productName.classList.add('name');
+            productName.classList.add('product-name');
             productName.innerText = product.name;
             productHeader.appendChild(productName);
 
