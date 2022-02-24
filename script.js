@@ -284,12 +284,15 @@ function subtractFromCart(event) {
     const productName = product.querySelector('.product-name').innerText;
     const index = cartArr.findIndex(p => p.name === productName);
 
+    console.log(cartArr[index].quantity);
+    console.log()
+
     if (cartArr[index].quantity === 1) {
         cartArr.splice(index, 1);
         product.remove();
     } else {
         cartArr[index].quantity--;
-        const productPriceFooter = product.querySelector('.price');
+        const productPriceFooter = product.querySelector('.product-price-footer');
         productPriceFooter.innerText = `$${cartArr[index].price.toFixed(2)} x ${cartArr[index].quantity}`;
     }
 

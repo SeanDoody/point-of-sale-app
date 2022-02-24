@@ -468,7 +468,10 @@ h2 {
     /* header */
 
     header {
-        padding: 1rem;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 1rem;
+        padding-right: 1rem;
         border-width: 0.3rem;
     }
 
@@ -490,8 +493,8 @@ h2 {
     }
 
     .fa-prescription {
-        top: 6rem;
-        right: 4.4rem;
+        top: 5rem;
+        right: 4.5rem;
         font-size: 4rem;
         color: #d2c1b0;
     }
@@ -499,27 +502,30 @@ h2 {
     /* footer */
 
     footer {
-        padding: 1rem;
+        /* padding: 1rem; */
         border-width: 0.3rem;
     }
 
     #footer-total {
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
 
     .fa-shopping-cart {
-        font-size: 7rem;
+        font-size: 5rem;
     }
 
     #footer-item-count {
-        font-size: 4rem;
-        bottom: 2.9rem;
-        left: 3.7rem;
+        font-size: 3rem;
+        bottom: 1.8rem;
+        left: 2.4rem;
     }
 
     #footer-button {
-        font-size: 4rem;
-        padding: 1rem;
+        font-size: 2.5rem;
+        padding: 0;
+        border-radius: 1.5rem;
+        padding-top: 0.5rem;
+        padding-left: 0.5rem;
         padding-right: 1.5rem;
         padding-bottom: 1.5rem;
     }
@@ -729,7 +735,7 @@ h2 {
 
     header {
         padding-top: 0;
-        padding-bottom: 0.7rem;
+        padding-bottom: 0.5rem;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
     }
@@ -740,55 +746,59 @@ h2 {
     }
 
     #header-text h1 {
-        font-size: 3.5rem;
+        font-size: 2.5rem;
         text-shadow: -0.25rem 0 #654321, 0 0.25rem #654321, 0.25rem 0 #654321, 0 0.25rem #654321;
     }
 
     #header-text p {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         margin-left: 2rem;
         margin-top: 0.5rem;
     }
 
     .fa-mug-hot {
-        font-size: 5rem;
+        font-size: 4rem;
+        margin-bottom: -0.5rem;
     }
 
     .fa-prescription {
-        font-size: 2.6rem;
-        top: 2.7rem;
-        right: 2.7rem;
+        font-size: 2rem;
+        top: 2.2rem;
+        right: 2.3rem;
     }
 
     /* footer */
 
     footer {
-        padding: 0.5rem;
+        padding-top: 0.2rem;
+        padding-bottom: 0.2rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
     
     #footer-total {
-        font-size: 3.5rem;
+        font-size: 2.5rem;
     }
     
     .fa-shopping-cart {
-        font-size: 4rem;
+        font-size: 3rem;
     }
     
     #footer-item-count {
-        font-size: 2.5rem;
-        bottom: 1.4rem;
-        left: 2rem; 
+        font-size: 2rem;
+        bottom: 1.1rem;
+        left: 1.5rem; 
     }
     
     #footer-button {
-        font-size: 2.5rem;
+        font-size: 2rem;
         height: 75%;
         padding-top: 0;
         padding-bottom: 1rem;
         padding-left: 0.5rem;
         padding-right: 1rem;
         border-width: 0.2rem;
-        border-radius: 1.2rem;
+        border-radius: 1rem;
     }
     
     /* main section */
@@ -796,53 +806,53 @@ h2 {
     main {
         padding-top: 0;
         padding-bottom: 0;
-        padding-left: 12%;
-        padding-right: 12%;
+        padding-left: 18%;
+        padding-right: 18%;
     }
 
     h2 {
-        font-size: 5rem;
+        font-size: 4rem;
     }
 
     /* menu items */
 
     .product {
-        height: 15rem;
-        margin-bottom: 3rem;
+        height: 12rem;
+        margin-bottom: 2rem;
         padding-left: 2rem;
     }
     
     .product img {
-        height: 15rem;
-        width: 15rem;
+        height: 12rem;
+        width: 12rem;
     }
     
     .product-name {
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
     
     .product-price-header {
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
     
     .product-description {
-        font-size: 3rem;
+        font-size: 2.5rem;
         text-overflow: clip;
         overflow: visible;
         white-space: normal;
     }
     
     .product-footer {
-        margin-top: -2rem;
+        margin-top: -2.5rem;
     }
     
     .product-footer select {
-        font-size: 3rem;
-        width: 6rem;
+        font-size: 2.5rem;
+        width: 5.5rem;
     }
     
     .product-footer button {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
     
     /* shopping cart */
@@ -865,9 +875,9 @@ h2 {
         margin-bottom: 2rem;
     }
     
-    .row {
+    /* .row {
 
-    }
+    } */
     
     .error {
         border-width: 0.5rem;
@@ -910,29 +920,29 @@ h2 {
         align-items: center;
     }
     
-    #custom-tip-flex {
+    /* #custom-tip-flex {
 
-    }
+    } */
     
-    #custom-tip-buttons {
+    /* #custom-tip-buttons {
 
-    }
+    } */
     
     #custom-tip-buttons button {
         font-size: 3rem;
     }
     
-    #tip-entry {
+    /* #tip-entry {
 
-    }
+    } */
 
     #payment-question {
         margin-top: 2rem;
     }
     
-    #payment-buttons {
+    /* #payment-buttons {
 
-    }
+    } */
     
     #payment-buttons button {
         font-size: 3rem;
@@ -946,9 +956,9 @@ h2 {
         margin-bottom: 1rem;
     }
     
-    #cash-input {
+    /* #cash-input {
 
-    }
+    } */
     
     #card-prompt {
         width: 75%;
@@ -958,9 +968,9 @@ h2 {
         margin-bottom: 1rem;
     }
     
-    #card-prompt input {
+    /* #card-prompt input {
 
-    }
+    } */
     
     #cc-warning {
         font-size: 3rem;
